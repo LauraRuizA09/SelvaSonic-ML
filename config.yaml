@@ -1,0 +1,48 @@
+# ============================================
+# SelvaSonic — Configuración del Proyecto
+# ============================================
+
+# --- Datos ---
+data:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  metadata_file: "data/metadata.csv"
+  sample_rate: 22050        # Hz — estándar para análisis de audio
+  clip_duration: 5.0        # segundos por clip
+  n_mels: 128               # bandas del espectrograma Mel
+  n_fft: 2048               # ventana FFT
+  hop_length: 512            # salto entre ventanas
+  split_ratios:              # train / val / test
+    train: 0.7
+    val: 0.15
+    test: 0.15
+
+# --- Modelo ---
+model:
+  name: "SelvaSonicCNN"
+  cnn_channels: [32, 64, 128, 256]   # canales por bloque Conv2D
+  attention_heads: 4                   # Multi-Head Attention
+  dropout: 0.3
+  num_classes: null                    # se define dinámicamente
+
+# --- Entrenamiento ---
+training:
+  epochs: 100
+  batch_size: 32
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  scheduler: "cosine"       # cosine annealing
+  early_stopping_patience: 10
+  label_smoothing: 0.1
+  seed: 42
+
+# --- Inferencia ---
+inference:
+  confidence_threshold: 0.7  # debajo de esto → "No identificado"
+  checkpoint: "checkpoints/best_model.pth"
+
+# --- Logging ---
+logging:
+  use_tensorboard: true
+  use_wandb: false
+  log_dir: "results/logs"

@@ -1,0 +1,45 @@
+# === Data (demasiado grande para GitHub) ===
+data/raw/
+data/processed/
+*.mp3
+*.wav
+*.pt
+*.npy
+
+# === Modelos entrenados ===
+checkpoints/
+*.pth
+*.ckpt
+
+# === Python ===
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# === Entornos virtuales ===
+venv/
+env/
+.env
+
+# === Jupyter ===
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# === IDE ===
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# === OS ===
+.DS_Store
+Thumbs.db
+
+# === W&B ===
+wandb/
