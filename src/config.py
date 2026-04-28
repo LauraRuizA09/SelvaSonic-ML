@@ -128,7 +128,7 @@ Justificación:
 # 3. SEGMENTACIÓN DE CLIPS
 # =============================================================================
 # Constantes que controlan el corte de audios largos en clips uniformes.
-# Usadas por: src/transforms.py, src/dataset.py (Semana 2 más adelante)
+# Usadas por: src/segmentation.py, src/dataset.py
 
 CLIP_DURATION_S: float = 5.0
 """Duración estándar de cada clip de entrenamiento, en segundos.
@@ -142,12 +142,68 @@ Justificación:
       padding cuando se entrena con clases negativas.
 """
 
-# Número de muestras por clip (derivado, NO modificar manualmente)
 CLIP_NUM_SAMPLES: int = int(CLIP_DURATION_S * SAMPLE_RATE)
-"""Número de muestras de un clip estándar.
+"""Número de muestras de un clip estándar (constante derivada).
 
 Calculado automáticamente: CLIP_DURATION_S * SAMPLE_RATE = 5.0 * 22050 = 110250.
 Usado para padding/truncate de clips que no midan exactamente 5s.
+NO modificar manualmente — depende de CLIP_DURATION_S y SAMPLE_RATE.
+"""
+
+CLIP_OVERLAP_RATIO: float = 0.5
+"""Solapamiento entre clips consecutivos, fracción en [0.0, 1.0).
+
+Valores típicos:
+    - 0.0 → clips adyacentes (sin solape)
+    - 0.5 → 50% de solape (cada clip avanza 2.5s) — RECOMENDADO
+    - 0.75 → 75% de solape (más datos, redundancia alta)
+
+Justificación:
+    Con solape 50%, un audio de 30s genera 11 clips en lugar de 6.
+    Es data augmentation honesto: ventanas distintas del mismo evento
+    acústico ayudan al modelo a aprender invarianza temporal.
+
+IMPORTANTE: Solo aplicar solape en TRAIN, nunca en VAL/TEST.
+    Si dos clips de validación se solapan al 50%, comparten el 50% de
+    sus muestras → métricas infladas (data leakage entre clips).
+"""
+
+SHORT_AUDIO_STRATEGY: str = "wrap"
+"""Estrategia para audios MÁS CORTOS que CLIP_DURATION_S.
+
+Opciones:
+    "wrap"  → repetición circular (loop) — preserva propiedades estadísticas
+    "zero"  → padding con ceros — introduce silencio artificial (no recomendado)
+    "drop"  → descartar el audio — pérdida de datos
+
+Justificación de "wrap" como default:
+    El padding con ceros mete silencio que la CNN puede aprender como
+    "feature de borde" (sesgo). El padding circular conserva la firma
+    espectral del canto, manteniendo el espectrograma coherente.
+"""
+
+LEFTOVER_STRATEGY: str = "wrap"
+"""Estrategia para el SOBRANTE al final de un audio largo.
+
+Ejemplo: audio de 12s con clips de 5s y solape 0 → 2 clips + 2s sobrantes.
+¿Qué hacer con esos 2s?
+
+Opciones:
+    "wrap"  → completar con repetición desde el inicio del sobrante
+    "drop"  → descartar el sobrante (más limpio, pierde poco)
+    "zero"  → padding con ceros (no recomendado)
+
+Solo se procesa el sobrante si dura ≥ MIN_LEFTOVER_SEC (ver abajo).
+"""
+
+MIN_LEFTOVER_SEC: float = 2.0
+"""Mínima duración (en segundos) del sobrante para procesarlo.
+
+Justificación:
+    Un sobrante de 0.3s rellenado con repetición produciría un clip
+    casi totalmente sintético — ruido para el modelo. A partir de 2s
+    de audio "real" hay suficiente firma espectral para que el clip
+    aporte información, incluso después del padding.
 """
 
 
