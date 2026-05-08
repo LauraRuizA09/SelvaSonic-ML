@@ -208,7 +208,83 @@ Justificación:
 
 
 # =============================================================================
-# 4. RESERVADO PARA FUTURO (Semanas 3-6)
+# 4. DATA AUGMENTATION
+# =============================================================================
+# Constantes que controlan el aumento de datos sintético del training set.
+# Usadas por: src/augmentation.py, src/dataset.py
+#
+# IMPORTANTE: Solo aplicar augmentation en TRAIN. Nunca en VAL/TEST.
+
+TIME_STRETCH_RANGE: tuple[float, float] = (0.8, 1.25)
+"""Rango de factores para time stretch (cambio de velocidad sin alterar tono).
+
+Interpretación:
+    - rate < 1.0 -> audio MÁS LARGO (ave cantando "lento")
+    - rate = 1.0 -> sin cambio
+    - rate > 1.0 -> audio MÁS CORTO (ave cantando "rápido")
+
+Justificación de [0.8, 1.25]:
+    - Aves reales cantan a velocidades variables según contexto
+      (excitación, fatiga, distancia al receptor).
+    - Más allá de ±25% el algoritmo (phase vocoder) introduce artefactos
+      audibles que el modelo aprendería como ruido.
+    - Rango simétrico en escala logarítmica: 1/1.25 = 0.8.
+"""
+
+PITCH_SHIFT_RANGE: tuple[int, int] = (-2, 2)
+"""Rango de semitones para pitch shift (cambio de tono sin alterar duración).
+
+Unidades: semitones. 12 semitones = 1 octava. f' = f * 2^(n/12).
+
+Justificación de [-2, +2]:
+    - ±2 semitones -> frecuencias multiplicadas por [0.89, 1.12]
+    - Cubre variación natural entre individuos de la misma especie
+      (machos vs hembras, juveniles vs adultos).
+    - Más allá ±2 cambia la firma espectral demasiado y el ave deja
+      de ser reconocible para un experto humano.
+"""
+
+SNR_DB_RANGE: tuple[float, float] = (10.0, 30.0)
+"""Rango de SNR (Signal-to-Noise Ratio) en decibelios para add_noise.
+
+SNR_dB = 10 * log10(P_señal / P_ruido)
+
+Interpretación práctica:
+    - SNR = 30 dB -> ruido apenas audible (ambiente silencioso)
+    - SNR = 20 dB -> ruido moderado (selva con viento ligero)
+    - SNR = 10 dB -> ruido fuerte (lluvia, mucho ambiente)
+    - SNR < 10 dB -> ave imperceptible, basura para el modelo
+
+Justificación:
+    Simula condiciones reales de campo (ej. los audios de los
+    compañeros del Amazonas) donde siempre hay ruido ambiental.
+    Entrenar con SNR variable hace al modelo robusto a contextos.
+"""
+
+AUG_PROB_TIME_STRETCH: float = 0.5
+"""Probabilidad de aplicar time stretch a cada clip de TRAIN.
+
+Justificación:
+    50% es estándar en bioacústica. Si fuera 100% perderíamos la
+    representación del audio "natural" sin modificar. Si fuera muy bajo,
+    la augmentation no tendría efecto suficiente.
+"""
+
+AUG_PROB_PITCH_SHIFT: float = 0.5
+"""Probabilidad de aplicar pitch shift a cada clip de TRAIN."""
+
+AUG_PROB_ADD_NOISE: float = 0.7
+"""Probabilidad de aplicar add noise a cada clip de TRAIN.
+
+Justificación:
+    Más alta que las otras (70% vs 50%) porque el ruido es la condición
+    MÁS REALISTA en producción. Las aves casi nunca se graban en silencio
+    absoluto, así que conviene exponer al modelo a ruido frecuentemente.
+"""
+
+
+# =============================================================================
+# 5. RESERVADO PARA FUTURO (Semanas 3-6)
 # =============================================================================
 # Estos hiperparámetros se irán llenando conforme avance el proyecto.
 # Se dejan documentados aquí para tener un "mapa" de qué falta configurar.
