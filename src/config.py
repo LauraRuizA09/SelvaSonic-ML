@@ -303,3 +303,30 @@ Justificación:
 
 # --- Inferencia (Semana 5-6) ---
 # CONFIDENCE_THRESHOLD: float = 0.6  # Por debajo → "No identificado"
+
+
+# =============================================================================
+# 6. LOGGING
+# =============================================================================
+# Constantes que controlan el logging con TensorBoard.
+# Usadas por: src/logger.py
+
+TENSORBOARD_ENABLED: bool = True
+"""Si activar TensorBoard durante entrenamiento.
+
+Útil desactivar (False) en tests, debugging local rápido, o ejecuciones
+donde no se quiere generar logs (ej. smoke tests automáticos).
+"""
+
+TENSORBOARD_LOG_DIR_NAME: str = "tensorboard"
+"""Nombre del subdirectorio donde guardar logs de TensorBoard dentro de
+cada run. Estructura final: runs/<run_name>/tensorboard/events.out.*"""
+
+LOG_CONFUSION_MATRIX_EVERY_N_EPOCHS: int = 5
+"""Cada cuántas épocas registrar matriz de confusión en TensorBoard.
+
+Justificación:
+    Generar la matriz cada época es costoso (requiere correr inferencia
+    sobre validation set + generar figura matplotlib). Cada 5 épocas da
+    suficiente granularidad para ver evolución sin overhead.
+"""

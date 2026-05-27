@@ -43,3 +43,14 @@ Thumbs.db
 
 # === W&B ===
 wandb/
+
+# === TensorBoard (pueden ser pesados, se regeneran con history_to_tensorboard.py) ===
+runs/
+**/tensorboard/
+*.tfevents.*
+
+# === Pytest ===
+.pytest_cache/
+
+# === Resultados de runs (los .pth ya los cubre la regla de arriba) ===
+results/runs/**/*.pth
