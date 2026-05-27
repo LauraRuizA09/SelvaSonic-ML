@@ -45,7 +45,7 @@ Thumbs.db
 wandb/
 
 # === TensorBoard (pueden ser pesados, se regeneran con history_to_tensorboard.py) ===
-runs/
+/runs/
 **/tensorboard/
 *.tfevents.*
 
