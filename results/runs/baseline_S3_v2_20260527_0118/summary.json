@@ -1,0 +1,39 @@
+{
+  "run_name": "baseline_S3_v2_20260527_0118",
+  "timestamp": "2026-05-27T02:58:10.901413",
+  "epochs_completed": 27,
+  "epochs_max": 30,
+  "best_val_acc": 0.741851368970013,
+  "test_acc": 0.6322229775662814,
+  "test_loss": 1.4309946999592007,
+  "final_train_acc": 0.9759722222222222,
+  "final_val_acc": 0.7314211212516297,
+  "label_map": {
+    "no_ave": 0,
+    "Celeus_grammicus": 1,
+    "Chordeiles_pusillus": 2,
+    "Crypturellus_cinereus": 3,
+    "Crypturellus_undulatus": 4,
+    "Frederickena_fulva": 5,
+    "Glaucidium_brasilianum": 6,
+    "Lipaugus_vociferans": 7,
+    "Ramphastos_tucanus": 8,
+    "Rupornis_magnirostris": 9,
+    "Trogon_viridis": 10
+  },
+  "hparams": {
+    "batch_size": 32,
+    "lr": 0.001,
+    "weight_decay": 0.0001,
+    "label_smoothing": 0.1,
+    "optimizer": "AdamW",
+    "scheduler": "CosineAnnealingLR",
+    "train_val_test_ratio": [
+      0.7,
+      0.15,
+      0.15
+    ]
+  },
+  "n_params": 422635,
+  "device": "cuda"
+}
