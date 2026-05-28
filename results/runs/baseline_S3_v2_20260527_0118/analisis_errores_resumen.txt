@@ -1,0 +1,46 @@
+
+======================================================================
+RESUMEN DEL ANÁLISIS DE ERRORES — BASELINE SelvaSonic S3
+======================================================================
+
+MÉTRICAS GLOBALES
+  Accuracy global         : 0.6322
+  Macro F1 (no ponderado) : 0.5088
+  Weighted F1             : 0.6224
+  Baseline aleatorio      : 0.0909  (1/11)
+  Mejora sobre azar       : 7.0x
+
+RENDIMIENTO POR CLASE
+  Clases con F1 >= 0.5 (6): no_ave, Chordeiles_pusillus, Crypturellus_cinereus, Glaucidium_brasilianum, Lipaugus_vociferans, Ramphastos_tucanus
+  Clases con F1 <  0.5 (5): Celeus_grammicus, Crypturellus_undulatus, Frederickena_fulva, Rupornis_magnirostris, Trogon_viridis
+
+PATRÓN DE ERRORES
+  Total de errores        : 1082 de 2942 (36.8%)
+  Errores que van a no_ave : 86 (7.9% de los errores)
+  Confianza media aciertos : 0.693
+  Confianza media errores  : 0.431
+
+CORRELACIÓN DATOS-RENDIMIENTO
+  Pearson r (todas)        : 0.475
+  Pearson r (solo aves)    : 0.290
+
+DIAGNÓSTICO
+  - El modelo supera ampliamente el azar: la arquitectura y el pipeline funcionan.
+  - El rendimiento es muy desigual entre clases, dominado por el desbalance de datos.
+  - Las clases con mas datos (no_ave, Crypturellus_cinereus, Trogon_viridis,
+    Lipaugus_vociferans) rinden bien; las de ~20 archivos rinden mal.
+  - Hay un gap train/val (~0.97 vs ~0.74) que confirma overfitting moderado.
+
+HOJA DE RUTA PARA SEMANA 4 (en orden de impacto esperado)
+  1. DATOS (mayor palanca): balanceo de clases — class weights en la loss,
+     u oversampling de especies raras. El desbalance es el cuello de botella #1.
+  2. SEGMENTACION: explorar deteccion de actividad vocal (VAD) para no generar
+     clips de silencio etiquetados como ave (reduce la fuga hacia no_ave).
+  3. ARQUITECTURA: agregar Multi-Head Self-Attention. Hipotesis a verificar:
+     el attention ayudara sobre todo a discriminar especies del mismo genero,
+     resaltando las regiones tiempo-frecuencia mas informativas del espectrograma.
+  4. REGULARIZACION: si el overfitting persiste, subir dropout o data augmentation.
+
+  Metrica clave a vigilar en S4: el MACRO F1 (no el accuracy), porque es el que
+  refleja si mejoramos en las clases dificiles y no solo en no_ave.
+======================================================================
