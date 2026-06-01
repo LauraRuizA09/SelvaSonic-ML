@@ -1,0 +1,44 @@
+
+===========================================================================
+RESUMEN COMPARATIVO BASELINE vs ATTENTION — SelvaSonic
+===========================================================================
+
+METRICAS GLOBALES (todas con mismo test set, mismo split, misma semilla)
+                          Baseline    Attention      Delta
+  test accuracy             0.6322      0.6873    +0.0551
+  macro F1                  0.5088      0.5989    +0.0900
+  macro AP                  0.5912      0.6626    +0.0714
+  macro AUC-ROC             0.9008      0.9166    +0.0158
+  parametros               422,635     714,987   +292,352
+  epocas entrenadas             27          17        -10
+
+HALLAZGOS PRINCIPALES
+
+  1. El modulo de Multi-Head Self-Attention mejora el test accuracy en
+     0.0551 (8.7%) absoluto al costo de +69.2% de parametros.
+
+  2. El macro F1 mejora en +0.0900, lo que indica que la mejora no
+     se concentra solo en la clase mayoritaria (no_ave), sino que se
+     distribuye entre clases.
+
+  3. Convergencia: el attention converge mas rapido (mejor val_acc en
+     epoca 17 vs 27 del baseline), sugiriendo que la
+     atencion ayuda al modelo a encontrar patrones discriminativos
+     mas eficientemente.
+
+  4. La hipotesis del notebook 04 sobre que el attention deberia ayudar
+     en confusiones intra-genero se CONFIRMA.
+
+  5. El cuello de botella restante es el desbalance de datos: el patron
+     'mas archivos = mejor F1' sigue presente en ambos modelos. La
+     siguiente mejora deberia venir de class weights, oversampling o
+     adquisicion de mas datos para especies minoritarias.
+
+ARTEFACTOS GENERADOS (en results/comparacion_baseline_vs_attention/)
+  - comparacion_global.csv
+  - comparacion_por_clase.csv
+  - f1_por_clase_comparacion.png
+  - curvas_entrenamiento_comparacion.png
+  - f1_vs_datos_comparacion.png
+
+===========================================================================

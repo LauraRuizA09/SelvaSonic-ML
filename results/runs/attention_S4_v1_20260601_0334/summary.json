@@ -1,0 +1,34 @@
+{
+  "run_name": "attention_S4_v1_20260601_0334",
+  "timestamp": "2026-06-01T06:47:35.010654",
+  "epochs_completed": 17,
+  "best_val_acc": 0.7829204693611473,
+  "test_acc": 0.6872875594833446,
+  "test_loss": 1.37743387187443,
+  "n_params": 714987,
+  "hparams": {
+    "model": "SelvaSonicCNNAttention",
+    "num_heads": 4,
+    "attention_dropout": 0.1,
+    "classifier_dropout": 0.3,
+    "batch_size": 32,
+    "lr": 0.001,
+    "weight_decay": 0.0001,
+    "label_smoothing": 0.1,
+    "epochs_max": 30,
+    "optimizer": "AdamW",
+    "scheduler": "CosineAnnealingLR",
+    "n_params": 714987
+  },
+  "comparison_baseline": {
+    "val_acc": 0.7419,
+    "test_acc": 0.6322,
+    "n_params": 422635,
+    "run_name": "baseline_S3_v2_20260527_0118"
+  },
+  "deltas": {
+    "val_acc": 0.04102046936114734,
+    "test_acc": 0.05508755948334465,
+    "params": 292352
+  }
+}

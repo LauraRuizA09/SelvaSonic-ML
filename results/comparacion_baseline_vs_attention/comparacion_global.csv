@@ -1,0 +1,10 @@
+Métrica,Baseline,Attention,Delta (+/-)
+Test accuracy,0.6322,0.6873,+0.0551
+Best val accuracy,0.7419,0.7829,+0.0411
+Macro F1,0.5088,0.5989,+0.0900
+Weighted F1,0.6224,0.6825,+0.0600
+Macro AP,0.5912,0.6626,+0.0714
+Weighted AP,0.6892,0.7337,+0.0445
+Macro AUC-ROC,0.9008,0.9166,+0.0158
+Parámetros entrenables,"422,635","714,987","+292,352"
+Mejor época,27,17,—

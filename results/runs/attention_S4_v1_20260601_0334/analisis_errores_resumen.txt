@@ -1,0 +1,27 @@
+
+======================================================================
+RESUMEN ANALISIS DE ERRORES — ATTENTION MODEL
+======================================================================
+
+METRICAS GLOBALES
+  Accuracy global         : 0.6873  (Baseline: 0.6322)
+  Macro F1                : 0.5989
+  Weighted F1             : 0.6825
+
+PATRON DE ERRORES
+  Total errores           : 920 de 2942 (31.3%)
+  Errores a no_ave        : 124 (13.5% de errores)
+  Conf. media aciertos    : 0.780
+  Conf. media errores     : 0.558
+
+CORRELACION DATOS-F1
+  Pearson r (todas)       : 0.335
+  Pearson r (solo aves)   : 0.245
+
+TIPOS DE CONFUSIONES (top 12)
+  Mismo genero            : 1
+  Fuga a no_ave           : 2
+  Inter-genero            : 9
+
+(La comparacion detallada con baseline esta en el notebook 09)
+======================================================================

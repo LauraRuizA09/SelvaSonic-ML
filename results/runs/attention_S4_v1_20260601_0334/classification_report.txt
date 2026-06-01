@@ -1,0 +1,17 @@
+                        precision    recall  f1-score   support
+
+                no_ave      0.786     0.950     0.860       240
+      Celeus_grammicus      0.440     0.328     0.376       122
+   Chordeiles_pusillus      0.850     0.944     0.895        18
+ Crypturellus_cinereus      0.915     0.872     0.893       258
+Crypturellus_undulatus      0.456     0.257     0.329       101
+    Frederickena_fulva      0.391     0.692     0.500        26
+Glaucidium_brasilianum      0.522     0.747     0.615        95
+   Lipaugus_vociferans      0.821     0.604     0.696       159
+    Ramphastos_tucanus      0.886     0.688     0.775       170
+ Rupornis_magnirostris      0.056     0.071     0.062        14
+        Trogon_viridis      0.541     0.642     0.587       268
+
+              accuracy                          0.687      1471
+             macro avg      0.606     0.618     0.599      1471
+          weighted avg      0.698     0.687     0.682      1471
