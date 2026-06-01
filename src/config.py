@@ -290,10 +290,55 @@ Justificación:
 # Se dejan documentados aquí para tener un "mapa" de qué falta configurar.
 
 # --- Modelo (Semana 3) ---
-# CNN_CHANNELS: list[int] = [32, 64, 128, 256]
-# ATTENTION_HEADS: int = 4
-# DROPOUT: float = 0.3
-# NUM_CLASSES: int = 11  # 10 especies + clase "no_ave"
+NUM_CLASSES: int = 11
+"""Número total de clases del clasificador (10 especies + clase 'no_ave').
+
+Justificación:
+    El dataset de SelvaSonic cubre 10 especies amazónicas colombianas más
+    una clase negativa (ESC-50 / sonidos no-ave). La clase no_ave recibe
+    la etiqueta 0 por convención (primera columna de la matriz de confusión).
+"""
+
+CNN_CHANNELS: list[int] = [32, 64, 128, 256]
+"""Número de filtros en cada bloque convolucional del feature extractor.
+
+Justificación:
+    Progresión geométrica ×2 por bloque (32→64→128→256): estándar desde
+    VGGNet (Simonyan & Zisserman, 2014). Cada bloque aprende representaciones
+    más abstractas en un espacio más rico. El tope en 256 balancea capacidad
+    representacional con el tamaño del dataset (~330 audios).
+"""
+
+DROPOUT: float = 0.3
+"""Tasa de dropout en la cabeza clasificadora (después del primer FC).
+
+Justificación:
+    0.3 es conservador: suficiente para regularizar sin degradar demasiado
+    el flujo de gradientes. Valores > 0.5 son arriesgados con datasets
+    pequeños donde ya hay pocas muestras por clase.
+"""
+
+ATTENTION_NUM_HEADS: int = 4
+"""Número de cabezas de atención en el módulo Multi-Head Self-Attention.
+
+Justificación:
+    - El feature map del CNN tiene d=256 canales. Con 4 cabezas, cada una
+      opera en 256/4 = 64 dimensiones, el valor canónico del Transformer
+      original (Vaswani et al. 2017) que balancea expresividad y estabilidad.
+    - 8 cabezas darían 32 dims/cabeza, demasiado angosto para capturar
+      patrones espectrales ricos.
+    - Con un dataset pequeño (~330 audios), más cabezas aumentarían el
+      riesgo de overfitting sin ganancia clara.
+"""
+
+ATTENTION_DROPOUT: float = 0.1
+"""Dropout dentro del módulo de atención (sobre los pesos de atención).
+
+Justificación:
+    Valor estándar en Transformers. Más bajo que el dropout del clasificador
+    (0.3) porque el attention ya es un cuello de información que regulariza
+    de por sí.
+"""
 
 # --- Entrenamiento (Semana 4) ---
 # BATCH_SIZE: int = 32
