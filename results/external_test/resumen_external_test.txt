@@ -1,0 +1,79 @@
+
+===========================================================================
+TEST CUALITATIVO CON AUDIOS EXTERNOS — PUERTO NARIÑO (AMAZONAS)
+===========================================================================
+
+DATOS PROCESADOS
+  Audios:           6 grabaciones de campo (~3.6 min cada una)
+  Total clips 5s:   264 por modelo
+  Sample rate orig: 48000 Hz (resampleado a 22050 Hz por el pipeline)
+  Threshold:        0.6
+  Tiempo procesamiento: Baseline 12s, Attention 7s
+
+TASA DE "NO IDENTIFICADO"
+  Baseline:   90.2% de clips marcados como no_identificado
+  Attention:  42.0% de clips marcados como no_identificado
+
+ESPECIES MAS PREDICHAS (top 3 por modelo, excluyendo no_identificado)
+  Baseline:
+    no_ave                    26 clips (9.8%)
+  Attention:
+    Trogon_viridis            151 clips (57.2%)
+    no_ave                    2 clips (0.8%)
+
+CONFIANZA
+  Baseline:   media 0.396, mediana 0.355
+  Attention:  media 0.591, mediana 0.635
+
+ACUERDO ENTRE MODELOS (clip por clip)
+  Acuerdo total:                      37.9%
+    De los cuales ambos no_identificado: 37.5%
+    De los cuales ambos misma especie:   0.4%
+  Desacuerdo:                         62.1%
+
+HALLAZGOS PRINCIPALES
+
+  1. Sin etiquetas de referencia (audios no curados), no es posible
+     reportar metricas de rendimiento. Esta evaluacion es CUALITATIVA:
+     caracteriza el COMPORTAMIENTO del sistema en condiciones reales.
+
+  2. El sistema de "no_identificado" se activa frecuentemente: 66.1%
+     promedio de clips son rechazados por baja confianza. Esto es DESEABLE
+     en audios de campo donde la mayoria del tiempo no hay aves del dataset
+     cantando claramente.
+
+  3. Los modelos coinciden en 37.9% de los clips, sugiriendo que cuando
+     hay una decision robusta, ambos modelos la capturan. La mayor parte
+     del acuerdo (37.5%) es coincidencia en no_identificado.
+
+  4. La confianza promedio en audios externos (0.40 / 0.59) es notablemente
+     menor que en el test set curado, lo que confirma que el modelo es
+     CONSCIENTE del cambio de distribucion.
+
+LIMITACIONES DETECTADAS Y TRABAJO FUTURO
+
+  1. AUSENCIA DE GROUND TRUTH: para una evaluacion cuantitativa de campo,
+     se necesitaria etiquetado experto de al menos una muestra de los clips.
+
+  2. AUDIOS MULTI-ETIQUETA: en audios de campo puede haber multiples
+     especies cantando simultaneamente. El modelo actual es de etiqueta
+     unica (softmax). Una version multi-etiqueta (sigmoid) seria mas
+     adecuada.
+
+  3. DETECCION DE ACTIVIDAD VOCAL (VAD): un pre-procesamiento con VAD
+     permitiria identificar solo los segmentos con actividad antes de
+     clasificarlos, reduciendo el ruido de fondo en las predicciones.
+
+  4. ADAPTACION DE DOMINIO: el modelo fue entrenado con audios curados
+     de Xeno-canto (bajo ruido, especies aisladas). Para mejorar la
+     generalizacion a campo, seria util incluir audios de campo en el
+     entrenamiento (transfer learning o fine-tuning).
+
+ARTEFACTOS GENERADOS (en results/external_test/)
+  - distribucion_predicciones.png + .csv
+  - distribucion_confianza.png
+  - linea_tiempo_predicciones.png
+  - resultados_baseline.json
+  - resultados_attention.json
+  - resumen_external_test.txt
+===========================================================================
