@@ -1,0 +1,43 @@
+
+===========================================================================
+COMPARACION DE EMBEDDINGS — BASELINE vs ATTENTION
+===========================================================================
+
+METODOLOGIA
+  Embeddings de 256-d extraidos del test set comun a ambos modelos.
+  - Baseline:  output del global_pool en SelvaSonicCNN.
+  - Attention: mean sobre tokens despues de attention+LN en SelvaSonicCNNAttention.
+  Visualizacion: t-SNE (perplexity=30) y UMAP (n_neighbors=15).
+  Metrica: silhouette score sobre el espacio original 256-d.
+
+SILHOUETTE SCORE GLOBAL
+  Baseline:  +0.0084
+  Attention: +0.1580
+  Delta:     +0.1496  (+1774.3% relativo)
+
+CLASES QUE MAS GANARON EN SEPARACION
+  no_ave                    delta = +0.274
+  Crypturellus_cinereus     delta = +0.262
+  Glaucidium_brasilianum    delta = +0.237
+
+CLASES QUE PERDIERON EN SEPARACION (si las hay)
+  Frederickena_fulva        delta = -0.098
+  Crypturellus_undulatus    delta = -0.089
+  Chordeiles_pusillus       delta = -0.049
+
+HALLAZGOS
+  1. El silhouette score mejoro globalmente con el attention.
+     Esto confirma que el modulo de atencion construye
+     un espacio de representaciones mas separable.
+  2. La mejora del macro F1 (+9.0%) se correlaciona con la mejora
+     geometrica de los embeddings.
+  3. Visualmente (t-SNE y UMAP), las dos representaciones muestran patrones
+     distintos: el attention tiende a producir clusters mas compactos.
+
+ARTEFACTOS GENERADOS
+  - results/comparacion_baseline_vs_attention/embeddings_tsne_comparacion.png
+  - results/comparacion_baseline_vs_attention/embeddings_umap_comparacion.png
+  - results/comparacion_baseline_vs_attention/embeddings_resumen.txt
+  - results/comparacion_baseline_vs_attention/embeddings_data.npz
+
+===========================================================================
