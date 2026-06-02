@@ -1,0 +1,182 @@
+{
+  "descripcion": "Comparativa final de los 3 modelos SelvaSonic-ML",
+  "fecha": "2026-06-02",
+  "modelos": {
+    "baseline": {
+      "nombre": "Baseline",
+      "accuracy": 0.6322229775662814,
+      "macro_f1": 0.5088314017419654,
+      "macro_precision": 0.5253637464231646,
+      "macro_recall": 0.5357485678499233,
+      "f1_per_class": {
+        "no_ave": 0.9094412331406551,
+        "Celeus_grammicus": 0.15,
+        "Chordeiles_pusillus": 0.5614035087719298,
+        "Crypturellus_cinereus": 0.8549323017408124,
+        "Crypturellus_undulatus": 0.26436781609195403,
+        "Frederickena_fulva": 0.3,
+        "Glaucidium_brasilianum": 0.6742857142857143,
+        "Lipaugus_vociferans": 0.7058823529411765,
+        "Ramphastos_tucanus": 0.6575342465753424,
+        "Rupornis_magnirostris": 0.05263157894736842,
+        "Trogon_viridis": 0.4666666666666667
+      },
+      "precision_per_class": {
+        "no_ave": 0.8458781362007168,
+        "Celeus_grammicus": 0.3157894736842105,
+        "Chordeiles_pusillus": 0.41025641025641024,
+        "Crypturellus_cinereus": 0.8532818532818532,
+        "Crypturellus_undulatus": 0.3150684931506849,
+        "Frederickena_fulva": 0.42857142857142855,
+        "Glaucidium_brasilianum": 0.7375,
+        "Lipaugus_vociferans": 0.7846153846153846,
+        "Ramphastos_tucanus": 0.6153846153846154,
+        "Rupornis_magnirostris": 0.03225806451612903,
+        "Trogon_viridis": 0.44039735099337746
+      },
+      "recall_per_class": {
+        "no_ave": 0.9833333333333333,
+        "Celeus_grammicus": 0.09836065573770492,
+        "Chordeiles_pusillus": 0.8888888888888888,
+        "Crypturellus_cinereus": 0.8565891472868217,
+        "Crypturellus_undulatus": 0.22772277227722773,
+        "Frederickena_fulva": 0.23076923076923078,
+        "Glaucidium_brasilianum": 0.6210526315789474,
+        "Lipaugus_vociferans": 0.6415094339622641,
+        "Ramphastos_tucanus": 0.7058823529411765,
+        "Rupornis_magnirostris": 0.14285714285714285,
+        "Trogon_viridis": 0.4962686567164179
+      }
+    },
+    "attention_v1": {
+      "nombre": "Attention v1",
+      "accuracy": 0.6872875594833446,
+      "macro_f1": 0.5988552785822726,
+      "macro_precision": 0.6057470472966351,
+      "macro_recall": 0.6178851519383504,
+      "f1_per_class": {
+        "no_ave": 0.8603773584905661,
+        "Celeus_grammicus": 0.3755868544600939,
+        "Chordeiles_pusillus": 0.8947368421052632,
+        "Crypturellus_cinereus": 0.8928571428571429,
+        "Crypturellus_undulatus": 0.3291139240506329,
+        "Frederickena_fulva": 0.5,
+        "Glaucidium_brasilianum": 0.6147186147186147,
+        "Lipaugus_vociferans": 0.6956521739130435,
+        "Ramphastos_tucanus": 0.7748344370860927,
+        "Rupornis_magnirostris": 0.0625,
+        "Trogon_viridis": 0.5870307167235495
+      },
+      "precision_per_class": {
+        "no_ave": 0.7862068965517242,
+        "Celeus_grammicus": 0.43956043956043955,
+        "Chordeiles_pusillus": 0.85,
+        "Crypturellus_cinereus": 0.9146341463414634,
+        "Crypturellus_undulatus": 0.45614035087719296,
+        "Frederickena_fulva": 0.391304347826087,
+        "Glaucidium_brasilianum": 0.5220588235294118,
+        "Lipaugus_vociferans": 0.8205128205128205,
+        "Ramphastos_tucanus": 0.8863636363636364,
+        "Rupornis_magnirostris": 0.05555555555555555,
+        "Trogon_viridis": 0.5408805031446541
+      },
+      "recall_per_class": {
+        "no_ave": 0.95,
+        "Celeus_grammicus": 0.32786885245901637,
+        "Chordeiles_pusillus": 0.9444444444444444,
+        "Crypturellus_cinereus": 0.872093023255814,
+        "Crypturellus_undulatus": 0.25742574257425743,
+        "Frederickena_fulva": 0.6923076923076923,
+        "Glaucidium_brasilianum": 0.7473684210526316,
+        "Lipaugus_vociferans": 0.6037735849056604,
+        "Ramphastos_tucanus": 0.6882352941176471,
+        "Rupornis_magnirostris": 0.07142857142857142,
+        "Trogon_viridis": 0.6417910447761194
+      }
+    },
+    "attention_v2": {
+      "nombre": "Attention v2 (balanced)",
+      "accuracy": 0.7036029911624745,
+      "macro_f1": 0.6253759856994506,
+      "macro_precision": 0.6378957170666021,
+      "macro_recall": 0.6620330922967785,
+      "f1_per_class": {
+        "no_ave": 0.9317269076305221,
+        "Celeus_grammicus": 0.19161676646706588,
+        "Chordeiles_pusillus": 0.723404255319149,
+        "Crypturellus_cinereus": 0.8833652007648184,
+        "Crypturellus_undulatus": 0.5258620689655172,
+        "Frederickena_fulva": 0.5306122448979592,
+        "Glaucidium_brasilianum": 0.7852760736196319,
+        "Lipaugus_vociferans": 0.6730158730158731,
+        "Ramphastos_tucanus": 0.8191126279863481,
+        "Rupornis_magnirostris": 0.25,
+        "Trogon_viridis": 0.5651438240270727
+      },
+      "precision_per_class": {
+        "no_ave": 0.8992248062015504,
+        "Celeus_grammicus": 0.35555555555555557,
+        "Chordeiles_pusillus": 0.5862068965517241,
+        "Crypturellus_cinereus": 0.8716981132075472,
+        "Crypturellus_undulatus": 0.46564885496183206,
+        "Frederickena_fulva": 0.5652173913043478,
+        "Glaucidium_brasilianum": 0.9411764705882353,
+        "Lipaugus_vociferans": 0.6794871794871795,
+        "Ramphastos_tucanus": 0.975609756097561,
+        "Rupornis_magnirostris": 0.16,
+        "Trogon_viridis": 0.5170278637770898
+      },
+      "recall_per_class": {
+        "no_ave": 0.9666666666666667,
+        "Celeus_grammicus": 0.13114754098360656,
+        "Chordeiles_pusillus": 0.9444444444444444,
+        "Crypturellus_cinereus": 0.8953488372093024,
+        "Crypturellus_undulatus": 0.6039603960396039,
+        "Frederickena_fulva": 0.5,
+        "Glaucidium_brasilianum": 0.6736842105263158,
+        "Lipaugus_vociferans": 0.6666666666666666,
+        "Ramphastos_tucanus": 0.7058823529411765,
+        "Rupornis_magnirostris": 0.5714285714285714,
+        "Trogon_viridis": 0.6231343283582089
+      }
+    }
+  },
+  "ece": {
+    "baseline": 0.049581770028572024,
+    "attention_v1": 0.03885954867650828,
+    "attention_v2": 0.14524659206476606
+  },
+  "correlacion_pearson_f1_vs_datos": {
+    "baseline": 0.29009772029338227,
+    "attention_v1": 0.2452265111032901,
+    "attention_v2": 0.17652636289330834
+  },
+  "ap_clases_raras": {
+    "baseline": {
+      "Frederickena_fulva": 0.3341004333179593,
+      "Rupornis_magnirostris": 0.045408661227699085,
+      "Chordeiles_pusillus": 0.9248346560846563,
+      "Glaucidium_brasilianum": 0.7460301791670428,
+      "Celeus_grammicus": 0.2285041512082167
+    },
+    "attention_v1": {
+      "Frederickena_fulva": 0.7350344625987091,
+      "Rupornis_magnirostris": 0.04125883544499126,
+      "Chordeiles_pusillus": 0.9913580246913583,
+      "Glaucidium_brasilianum": 0.7772839460025777,
+      "Celeus_grammicus": 0.31782966797698703
+    },
+    "attention_v2": {
+      "Frederickena_fulva": 0.7175589768287243,
+      "Rupornis_magnirostris": 0.5113081085171426,
+      "Chordeiles_pusillus": 0.948094079480941,
+      "Glaucidium_brasilianum": 0.8515735591433825,
+      "Celeus_grammicus": 0.29313101538540215
+    }
+  },
+  "ap_medio_clases_raras": {
+    "baseline": 0.4557756162011148,
+    "attention_v1": 0.5725529873429247,
+    "attention_v2": 0.6643331478711185
+  }
+}

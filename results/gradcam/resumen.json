@@ -1,0 +1,88 @@
+{
+  "descripcion": "Resumen cuantitativo del análisis Grad-CAM (NB 14)",
+  "fecha": "2026-06-02",
+  "n_muestras_correctas": 22,
+  "n_muestras_error": 6,
+  "entropia": {
+    "baseline_media": 0.9515328969898275,
+    "baseline_std": 0.020563860015479083,
+    "v2_media": 0.8414775599551058,
+    "v2_std": 0.20083164777621115
+  },
+  "centroide_frecuencia": {
+    "baseline_media": 65.87074498146382,
+    "baseline_std": 11.904859385849914,
+    "v2_media": 76.72993831183553,
+    "v2_std": 18.18164456046585
+  },
+  "por_clase": {
+    "no_ave": {
+      "entropia_baseline_media": 0.9913444804404843,
+      "entropia_v2_media": 0.9554108182233413,
+      "centroide_baseline_media": 68.54707265555727,
+      "centroide_v2_media": 84.68564227239865
+    },
+    "Celeus_grammicus": {
+      "entropia_baseline_media": 0.9497688108043616,
+      "entropia_v2_media": 0.894207308581319,
+      "centroide_baseline_media": 58.27223027881042,
+      "centroide_v2_media": 80.45535161040479
+    },
+    "Chordeiles_pusillus": {
+      "entropia_baseline_media": 0.9690853712083569,
+      "entropia_v2_media": 0.34340862074775536,
+      "centroide_baseline_media": 57.61831047215627,
+      "centroide_v2_media": 83.75000071143455
+    },
+    "Crypturellus_cinereus": {
+      "entropia_baseline_media": 0.9765671664654592,
+      "entropia_v2_media": 0.9262047962809465,
+      "centroide_baseline_media": 70.74340930604842,
+      "centroide_v2_media": 59.599231514914386
+    },
+    "Crypturellus_undulatus": {
+      "entropia_baseline_media": 0.9238475125681055,
+      "entropia_v2_media": 0.9313741641465785,
+      "centroide_baseline_media": 91.21515601913296,
+      "centroide_v2_media": 43.339823889209086
+    },
+    "Frederickena_fulva": {
+      "entropia_baseline_media": 0.9277100037911503,
+      "entropia_v2_media": 0.7361416467450198,
+      "centroide_baseline_media": 51.51385037493172,
+      "centroide_v2_media": 88.53877703088284
+    },
+    "Glaucidium_brasilianum": {
+      "entropia_baseline_media": 0.9554933564400422,
+      "entropia_v2_media": 0.874928753244998,
+      "centroide_baseline_media": 81.71028995610507,
+      "centroide_v2_media": 82.76030349921845
+    },
+    "Lipaugus_vociferans": {
+      "entropia_baseline_media": 0.9497184282359055,
+      "entropia_v2_media": 0.9412444938822029,
+      "centroide_baseline_media": 58.252911655999156,
+      "centroide_v2_media": 72.18118120437873
+    },
+    "Ramphastos_tucanus": {
+      "entropia_baseline_media": 0.9356733904755339,
+      "entropia_v2_media": 0.8585785271536654,
+      "centroide_baseline_media": 57.25592774303029,
+      "centroide_v2_media": 62.080303962529406
+    },
+    "Rupornis_magnirostris": {
+      "entropia_baseline_media": 0.941877750090603,
+      "entropia_v2_media": 0.8991228892050747,
+      "centroide_baseline_media": 70.26511225996032,
+      "centroide_v2_media": 96.35026999105487
+    },
+    "Trogon_viridis": {
+      "entropia_baseline_media": 0.9457755963681,
+      "entropia_v2_media": 0.895631141295261,
+      "centroide_baseline_media": 59.18392407437004,
+      "centroide_v2_media": 90.28843574376504
+    }
+  },
+  "capa_hookeada": "feature_extractor[-1]",
+  "resolucion_cam_antes_upsample": "(B, 256, 8, ~13)"
+}
