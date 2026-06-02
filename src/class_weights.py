@@ -224,45 +224,69 @@ def extract_labels_from_dataset(dataset) -> list[int]:
     """Extrae todos los labels de un torch.utils.data.Dataset.
 
     Útil para calcular class weights sobre un Dataset sin cargar todos los
-    espectrogramas en memoria. Asume que el dataset tiene un atributo `samples`
-    o que cada item retorna una tupla `(features, label)`.
+    espectrogramas en memoria. Asume que el dataset expone los labels a través
+    de uno de los siguientes patrones (en orden de prioridad):
+
+    1. Atributo `labels` (lista directa de labels).
+    2. Atributo `records` con campo `.label` en cada entrada (patrón de
+       SelvaSonic con NamedTuples).
+    3. Atributo `_index` con campo `.label` en cada entrada (patrón alternativo).
+    4. Fallback: iteración completa (LENTO, carga features).
 
     Parameters
     ----------
     dataset : torch.utils.data.Dataset
-        Dataset del que extraer los labels. Idealmente debe exponer los labels
-        sin tener que cargar las features (ver nota de eficiencia abajo).
+        Dataset del que extraer los labels.
 
     Returns
     -------
     list[int]
         Lista de labels en el mismo orden que el dataset.
 
-    Notes
-    -----
-    Si el dataset es perezoso (carga features on-the-fly), llamar a `dataset[i]`
-    para cada i puede ser lento porque carga el audio completo. Idealmente, el
-    Dataset debería exponer un atributo `_index` o similar con los labels ya
-    precomputados (como hace `AmazonAudioDataset` en este proyecto).
-
-    Esta función intenta primero acceder a atributos comunes; si fallan, hace
-    fallback a iteración completa.
+    Raises
+    ------
+    ValueError
+        Si ninguna estrategia rápida funciona y el dataset es muy grande
+        (>= 1000 muestras), para evitar fallback de horas accidentalmente.
     """
-    # Intento 1: atributo `labels` (rápido si existe)
+    # Estrategia 1: atributo `labels` directo (más rápido)
     if hasattr(dataset, "labels"):
         return list(dataset.labels)
 
-    # Intento 2: atributo `_index` con label en cada entrada (común en proyectos
-    # con índice de coordenadas como SelvaSonic)
+    # Estrategia 2: atributo `records` (patrón usado en SelvaSonicDataset)
+    if hasattr(dataset, "records"):
+        records = dataset.records
+        if len(records) > 0:
+            first = records[0]
+            if hasattr(first, "label"):
+                return [r.label for r in records]
+            if hasattr(first, "class_idx"):
+                return [r.class_idx for r in records]
+            if hasattr(first, "target"):
+                return [r.target for r in records]
+            if isinstance(first, dict):
+                for key in ("label", "class_idx", "target", "y"):
+                    if key in first:
+                        return [r[key] for r in records]
+
+    # Estrategia 3: atributo `_index` (patrón alternativo)
     if hasattr(dataset, "_index"):
         try:
             return [entry.label for entry in dataset._index]
         except AttributeError:
             pass
 
-    # Fallback: iteración completa (LENTO, carga features)
-    # Solo usar como último recurso.
-    return [int(dataset[i][1]) for i in range(len(dataset))]
+    # Fallback: iteración completa (MUY LENTO con audio datasets)
+    # Solo permitido en datasets pequeños para evitar pérdida de horas accidental.
+    n = len(dataset)
+    if n >= 1000:
+        raise ValueError(
+            f"No se pudo extraer labels rápido del dataset (n={n}). "
+            f"El fallback de iteración completa cargaría todas las features "
+            f"y tomaría tiempo prohibitivo. Atributos disponibles: "
+            f"{[a for a in dir(dataset) if not a.startswith('_')][:10]}..."
+        )
+    return [int(dataset[i][1]) for i in range(n)]
 
 
 # ---------------------------------------------------------------------------
@@ -290,9 +314,9 @@ if __name__ == "__main__":
     assert torch.allclose(result.weights, expected, atol=1e-4), \
         f"Pesos incorrectos: {result.weights} vs esperado {expected}"
     assert verify_class_weights(result=result), "Verificación de propiedades falló"
-    print("  ✓ Pesos correctos")
-    print("  ✓ Propiedad de normalización OK")
-    print("  ✓ Monotonicidad inversa OK")
+    print("  [OK] Pesos correctos")
+    print("  [OK] Propiedad de normalización OK")
+    print("  [OK] Monotonicidad inversa OK")
 
     # --- Test 2: simulación realista del dataset SelvaSonic ---
     print("\n[Test 2] Simulación realista de SelvaSonic (11 clases desbalanceadas)")
@@ -334,7 +358,7 @@ if __name__ == "__main__":
         )
 
     assert verify_class_weights(result=result_sim), "Verificación falló en test realista"
-    print("\n  ✓ Verificación matemática OK en dataset realista")
+    print("\n  [OK] Verificación matemática OK en dataset realista")
 
     # --- Test 3: manejo de errores ---
     print("\n[Test 3] Manejo de errores")
@@ -343,24 +367,24 @@ if __name__ == "__main__":
     # Labels vacíos
     try:
         compute_class_weights(labels=[], num_classes=3)
-        print("  ✗ FALLO: debió rechazar labels vacíos")
+        print("  [FAIL] FALLO: debió rechazar labels vacíos")
     except ValueError as e:
-        print(f"  ✓ Rechaza labels vacíos: {e}")
+        print(f"  [OK] Rechaza labels vacíos: {e}")
 
     # Clase sin muestras
     try:
         compute_class_weights(labels=[0, 0, 2, 2], num_classes=3)  # falta clase 1
-        print("  ✗ FALLO: debió rechazar clase sin muestras")
+        print("  [FAIL] FALLO: debió rechazar clase sin muestras")
     except ValueError as e:
-        print(f"  ✓ Rechaza clase sin muestras: clase 1 vacía")
+        print(f"  [OK] Rechaza clase sin muestras: clase 1 vacía")
 
     # Label fuera de rango
     try:
         compute_class_weights(labels=[0, 1, 5], num_classes=3)
-        print("  ✗ FALLO: debió rechazar label fuera de rango")
+        print("  [FAIL] FALLO: debió rechazar label fuera de rango")
     except ValueError as e:
-        print(f"  ✓ Rechaza label fuera de rango")
+        print(f"  [OK] Rechaza label fuera de rango")
 
     print("\n" + "=" * 70)
-    print(" TODOS LOS SMOKE TESTS PASARON ✓")
+    print(" TODOS LOS SMOKE TESTS PASARON [OK]")
     print("=" * 70)
