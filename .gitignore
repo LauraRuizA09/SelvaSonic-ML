@@ -58,3 +58,5 @@ results/runs/**/*.pth
 # Embeddings serializados (pesados, se regeneran con notebook 06)
 results/comparacion_baseline_vs_attention/embeddings_data.npz
 *.npz
+
+codigo/
