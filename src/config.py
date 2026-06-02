@@ -26,6 +26,23 @@ Aprendizaje Automático (Prof. Alcides Montoya) - 2026
 
 from __future__ import annotations
 
+from pathlib import Path
+
+
+# =============================================================================
+# 0. RUTAS BASE
+# =============================================================================
+# Definidas antes de las constantes que las usan (CLASS_WEIGHTS_PATH en s. 7).
+# Se derivan del __file__ del módulo para ser robustas tanto en local
+# (Windows) como en Colab (/content/SelvaSonic-ML/).
+
+DATA_DIR: Path = Path(__file__).resolve().parent.parent / "data"
+"""Ruta absoluta al directorio data/ del proyecto (independiente de OS).
+
+Ejemplo local:   C:/Users/…/SelvaSonic ML/data
+Ejemplo Colab:  /content/SelvaSonic-ML/data
+"""
+
 
 # =============================================================================
 # 1. AUDIO I/O
@@ -374,4 +391,52 @@ Justificación:
     Generar la matriz cada época es costoso (requiere correr inferencia
     sobre validation set + generar figura matplotlib). Cada 5 épocas da
     suficiente granularidad para ver evolución sin overhead.
+"""
+
+
+# =============================================================================
+# 7. MEJORAS DE LOSS (Fase 3: class weights + label smoothing)
+# =============================================================================
+# Ver docs/decisiones_metodologicas.md sección 2 para justificación completa.
+# Estas constantes controlan la construcción de la loss en src/loss.py.
+
+USE_CLASS_WEIGHTS: bool = True
+"""Si True, aplica weighting inversamente proporcional a la frecuencia de cada
+clase en CrossEntropyLoss. Mitiga el desbalance severo del dataset (Chordeiles
+tiene peso ~5.4x, Trogon tiene ~0.47x). Requiere CLASS_WEIGHTS_PATH generado
+por `python scripts/calcular_class_weights.py`.
+
+Justificación:
+    Sin class weights, la loss penaliza igual un error en no_ave (1,120 clips
+    train) que en Chordeiles_pusillus (240 clips). El modelo aprende a ignorar
+    clases minoritarias. Con weighting inverso, los errores en clases raras
+    valen proporcionalmente más, forzando al modelo a aprenderlas.
+"""
+
+LABEL_SMOOTHING_ALPHA: float = 0.1
+"""Parámetro alpha de label smoothing para CrossEntropyLoss.
+
+0.0 = sin smoothing (etiquetas one-hot puras).
+0.1 = estándar de la literatura (Müller et al., NeurIPS 2019, "When Does
+      Label Smoothing Help?"). Suaviza las etiquetas: la clase correcta
+      recibe probabilidad 1 - alpha + alpha/K en lugar de 1.0.
+
+Justificación:
+    El modelo attention v1 mostró overconfidence bias (notebook 11): predicciones
+    con probabilidad > 0.95 incluso en audios ambiguos. Label smoothing previene
+    que el modelo se vuelva demasiado confiado al penalizar predicciones cercanas
+    a 1.0, mejorando la calibración de probabilidades.
+
+Efectos prácticos:
+    - Reduce la brecha train_loss / val_loss (regularización implícita).
+    - Mejora el Expected Calibration Error (ECE).
+    - No cambia el argmax de las predicciones → accuracy no se ve afectado.
+"""
+
+CLASS_WEIGHTS_PATH: Path = DATA_DIR / "class_weights.pt"
+"""Ruta al tensor de class weights precomputados.
+
+Se genera corriendo: python scripts/calcular_class_weights.py
+Contiene: weights tensor [11], label_map, class_counts, class_frequencies.
+Excluido de git (*.pt en .gitignore) — regenerar si cambia el dataset.
 """
