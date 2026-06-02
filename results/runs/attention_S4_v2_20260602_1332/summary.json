@@ -1,0 +1,41 @@
+{
+  "run_name": "attention_S4_v2_20260602_1332",
+  "timestamp": "2026-06-02T15:13:28.800137",
+  "epochs_completed": 25,
+  "best_val_acc": 0.7653194263363755,
+  "test_acc": 0.7036029911624745,
+  "test_loss": 1.8471344155895717,
+  "n_params": 714987,
+  "use_class_weights": true,
+  "label_smoothing": 0.1,
+  "hparams": {
+    "model": "SelvaSonicCNNAttention_v2",
+    "num_heads": 4,
+    "attention_dropout": 0.1,
+    "classifier_dropout": 0.3,
+    "batch_size": 32,
+    "lr": 0.001,
+    "weight_decay": 0.0001,
+    "label_smoothing": 0.1,
+    "use_class_weights": true,
+    "weights_min": "0.4693",
+    "weights_max": "5.4439",
+    "epochs_max": 30,
+    "optimizer": "AdamW",
+    "scheduler": "CosineAnnealingLR",
+    "n_params": 714987
+  },
+  "loss_info": {
+    "use_class_weights": true,
+    "label_smoothing": 0.1,
+    "weights_min": 0.4693051278591156,
+    "weights_max": 5.443939208984375
+  },
+  "comparison_baseline": {
+    "model": "SelvaSonicCNN (baseline)",
+    "val_acc": 0.7419,
+    "test_acc": 0.6322,
+    "n_params": 422635,
+    "run_name": "baseline_S3_v2_20260527_0118"
+  }
+}
