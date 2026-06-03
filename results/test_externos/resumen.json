@@ -1,0 +1,122 @@
+{
+  "descripcion": "Test cualitativo audios externos — 3 modelos SelvaSonic-ML",
+  "fecha": "2026-06-02",
+  "audios_externos": [
+    "1_PuertoNarino1_9_06-20-RX11Co_01.wav",
+    "2_PuertoNarino1_9_06-20-RX11Co_01.wav",
+    "3_PuertoNarino1_9_06-20-RX11Co_01.wav",
+    "4_PuertoNarino1_9_06-20-RX11Co_01.wav",
+    "5_PuertoNarino1_9_06-20-2027.A3-RX11Co_01.wav",
+    "6_PuertoNarino1_9_06-20-2027.A3-RX11Co_01.wav"
+  ],
+  "n_clips_por_audio": {
+    "1_PuertoNarino1_9_06-20-RX11Co_01.wav": 44,
+    "2_PuertoNarino1_9_06-20-RX11Co_01.wav": 44,
+    "3_PuertoNarino1_9_06-20-RX11Co_01.wav": 44,
+    "4_PuertoNarino1_9_06-20-RX11Co_01.wav": 44,
+    "5_PuertoNarino1_9_06-20-2027.A3-RX11Co_01.wav": 44,
+    "6_PuertoNarino1_9_06-20-2027.A3-RX11Co_01.wav": 44
+  },
+  "threshold": 0.6,
+  "predicciones_agregadas": {
+    "baseline": {
+      "1_PuertoNarino1_9_06-20-RX11Co_01.wav": {
+        "especie": "no_ave",
+        "confianza": 0.7408
+      },
+      "2_PuertoNarino1_9_06-20-RX11Co_01.wav": {
+        "especie": "no_ave",
+        "confianza": 0.6779
+      },
+      "3_PuertoNarino1_9_06-20-RX11Co_01.wav": {
+        "especie": "no_ave",
+        "confianza": 0.6999
+      },
+      "4_PuertoNarino1_9_06-20-RX11Co_01.wav": {
+        "especie": "no_ave",
+        "confianza": 0.6947
+      },
+      "5_PuertoNarino1_9_06-20-2027.A3-RX11Co_01.wav": {
+        "especie": "no_ave",
+        "confianza": 0.63
+      },
+      "6_PuertoNarino1_9_06-20-2027.A3-RX11Co_01.wav": {
+        "especie": "no_ave",
+        "confianza": 0.6773
+      }
+    },
+    "attention_v1": {
+      "1_PuertoNarino1_9_06-20-RX11Co_01.wav": {
+        "especie": "Trogon_viridis",
+        "confianza": 0.6654
+      },
+      "2_PuertoNarino1_9_06-20-RX11Co_01.wav": {
+        "especie": "Trogon_viridis",
+        "confianza": 0.6984
+      },
+      "3_PuertoNarino1_9_06-20-RX11Co_01.wav": {
+        "especie": "Trogon_viridis",
+        "confianza": 0.7734
+      },
+      "4_PuertoNarino1_9_06-20-RX11Co_01.wav": {
+        "especie": "Trogon_viridis",
+        "confianza": 0.7301
+      },
+      "5_PuertoNarino1_9_06-20-2027.A3-RX11Co_01.wav": {
+        "especie": "Trogon_viridis",
+        "confianza": 0.7164
+      },
+      "6_PuertoNarino1_9_06-20-2027.A3-RX11Co_01.wav": {
+        "especie": "Trogon_viridis",
+        "confianza": 0.7312
+      }
+    },
+    "attention_v2": {
+      "1_PuertoNarino1_9_06-20-RX11Co_01.wav": {
+        "especie": "Trogon_viridis",
+        "confianza": 0.6481
+      },
+      "2_PuertoNarino1_9_06-20-RX11Co_01.wav": {
+        "especie": "Trogon_viridis",
+        "confianza": 0.6155
+      },
+      "3_PuertoNarino1_9_06-20-RX11Co_01.wav": {
+        "especie": "Trogon_viridis",
+        "confianza": 0.6496
+      },
+      "4_PuertoNarino1_9_06-20-RX11Co_01.wav": {
+        "especie": "Trogon_viridis",
+        "confianza": 0.6552
+      },
+      "5_PuertoNarino1_9_06-20-2027.A3-RX11Co_01.wav": {
+        "especie": "Trogon_viridis",
+        "confianza": 0.6853
+      },
+      "6_PuertoNarino1_9_06-20-2027.A3-RX11Co_01.wav": {
+        "especie": "Trogon_viridis",
+        "confianza": 0.6399
+      }
+    }
+  },
+  "metricas_overconfidence": {
+    "baseline": {
+      "conf_media": 0.39550153341031435,
+      "conf_mediana": 0.3554587662220001,
+      "entropia_media": 1.7185995064047004,
+      "h_relativa": 0.7167
+    },
+    "attention_v1": {
+      "conf_media": 0.5907774435525591,
+      "conf_mediana": 0.6350794434547424,
+      "entropia_media": 1.4411965513271576,
+      "h_relativa": 0.601
+    },
+    "attention_v2": {
+      "conf_media": 0.42322978823248186,
+      "conf_mediana": 0.42901335656642914,
+      "entropia_media": 1.7662543415703709,
+      "h_relativa": 0.7366
+    }
+  },
+  "h_max_referencia": 2.3978952727983707
+}

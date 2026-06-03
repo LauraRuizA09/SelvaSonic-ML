@@ -1,0 +1,113 @@
+{
+  "descripcion": "Análisis de embeddings comparativo — 3 modelos SelvaSonic-ML",
+  "fecha": "2026-06-02",
+  "n_clips_test": 2942,
+  "embedding_dim": 256,
+  "silhouette_espacio_original": {
+    "baseline": 0.008432506583631039,
+    "attention_v1": 0.15804773569107056,
+    "attention_v2": 0.16864807903766632
+  },
+  "trustworthiness_tsne": {
+    "baseline": 0.9963887856146563,
+    "attention_v1": 0.9966347854174383,
+    "attention_v2": 0.9954734177932656
+  },
+  "trustworthiness_umap": {
+    "baseline": 0.9925256130743668,
+    "attention_v1": 0.9915939846427828,
+    "attention_v2": 0.9913864063389434
+  },
+  "clases_raras": {
+    "baseline": {
+      "Frederickena_fulva": {
+        "n_clips_test": 52,
+        "dist_intra": 2.7991,
+        "dist_inter_vecina": 2.234,
+        "clase_vecina": "Rupornis_magnirostris",
+        "ratio_inter_intra": 0.7981
+      },
+      "Rupornis_magnirostris": {
+        "n_clips_test": 28,
+        "dist_intra": 3.658,
+        "dist_inter_vecina": 1.6206,
+        "clase_vecina": "Crypturellus_undulatus",
+        "ratio_inter_intra": 0.443
+      },
+      "Chordeiles_pusillus": {
+        "n_clips_test": 36,
+        "dist_intra": 2.8986,
+        "dist_inter_vecina": 2.8683,
+        "clase_vecina": "Frederickena_fulva",
+        "ratio_inter_intra": 0.9895
+      },
+      "Glaucidium_brasilianum": {
+        "n_clips_test": 190,
+        "dist_intra": 3.7347,
+        "dist_inter_vecina": 1.8682,
+        "clase_vecina": "Crypturellus_undulatus",
+        "ratio_inter_intra": 0.5002
+      }
+    },
+    "attention_v1": {
+      "Frederickena_fulva": {
+        "n_clips_test": 52,
+        "dist_intra": 11.174,
+        "dist_inter_vecina": 8.9241,
+        "clase_vecina": "Glaucidium_brasilianum",
+        "ratio_inter_intra": 0.7986
+      },
+      "Rupornis_magnirostris": {
+        "n_clips_test": 28,
+        "dist_intra": 11.5259,
+        "dist_inter_vecina": 5.4768,
+        "clase_vecina": "Crypturellus_undulatus",
+        "ratio_inter_intra": 0.4752
+      },
+      "Chordeiles_pusillus": {
+        "n_clips_test": 36,
+        "dist_intra": 10.5047,
+        "dist_inter_vecina": 8.6657,
+        "clase_vecina": "Trogon_viridis",
+        "ratio_inter_intra": 0.8249
+      },
+      "Glaucidium_brasilianum": {
+        "n_clips_test": 190,
+        "dist_intra": 9.8167,
+        "dist_inter_vecina": 8.3156,
+        "clase_vecina": "Crypturellus_undulatus",
+        "ratio_inter_intra": 0.8471
+      }
+    },
+    "attention_v2": {
+      "Frederickena_fulva": {
+        "n_clips_test": 52,
+        "dist_intra": 10.2022,
+        "dist_inter_vecina": 8.1757,
+        "clase_vecina": "Crypturellus_undulatus",
+        "ratio_inter_intra": 0.8014
+      },
+      "Rupornis_magnirostris": {
+        "n_clips_test": 28,
+        "dist_intra": 12.0302,
+        "dist_inter_vecina": 7.8347,
+        "clase_vecina": "Trogon_viridis",
+        "ratio_inter_intra": 0.6513
+      },
+      "Chordeiles_pusillus": {
+        "n_clips_test": 36,
+        "dist_intra": 9.3621,
+        "dist_inter_vecina": 11.7561,
+        "clase_vecina": "Ramphastos_tucanus",
+        "ratio_inter_intra": 1.2557
+      },
+      "Glaucidium_brasilianum": {
+        "n_clips_test": 190,
+        "dist_intra": 10.5218,
+        "dist_inter_vecina": 9.8257,
+        "clase_vecina": "Crypturellus_undulatus",
+        "ratio_inter_intra": 0.9338
+      }
+    }
+  }
+}
