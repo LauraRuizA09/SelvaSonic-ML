@@ -9,7 +9,8 @@
       "Bash(venv\\\\Scripts\\\\python.exe -c \"import librosa; print\\('librosa', librosa.__version__\\)\")",
       "PowerShell($f = \"C:\\\\Users\\\\Usuario\\\\Desktop\\\\SelvaSonic - Project ML\\\\SelvaSonic ML\\\\results\\\\presentacion\\\\SelvaSonic_ML_presentacion_final.pptx\"; try { $s = [System.IO.File]::Open\\($f, 'Open', 'ReadWrite', 'None'\\); $s.Close\\(\\); \"FILE IS FREE\" } catch { \"LOCKED: $_\" })",
       "PowerShell(Remove-Item *)",
-      "PowerShell(Get-Item *)"
+      "PowerShell(Get-Item *)",
+      "Bash(python -)"
     ]
   }
 }

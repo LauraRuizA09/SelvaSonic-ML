@@ -499,8 +499,8 @@ def set_cell_bg(cell, bg_h, fg_h, sz, bold=False, al=PP_ALIGN.CENTER):
     r.font.bold = bold; r.font.color.rgb = rgb(fg_h)
 
 def make_table(sl, data, x, y, w, h, col_ws=None,
-               hdr_bg=PNL, hdr_fg=CYN, hdr_sz=9,
-               row_bg=BG,  row_bg2=PNL2, row_fg=TS, row_sz=8.5,
+               hdr_bg=PNL, hdr_fg=CYN, hdr_sz=12,
+               row_bg=BG,  row_bg2=PNL2, row_fg=TS, row_sz=10.5,
                win_col=None):
     """data[0] = header row.  win_col = column index to highlight winner."""
     rows, cols = len(data), len(data[0])
@@ -561,7 +561,7 @@ def s02(prs):
         x0 = 0.5 + i * 4.2
         bx(sl, x0, 1.25, 4.0, 1.55, fill=PNL, border=CYN, bw=0.75)
         tx(sl, val, x0+0.1, 1.35, 3.8, 0.75, 42, CYN, bold=True, al=PP_ALIGN.CENTER)
-        tx(sl, lbl, x0+0.1, 2.07, 3.8, 0.35, 9,  TM, al=PP_ALIGN.CENTER)
+        tx(sl, lbl, x0+0.1, 2.07, 3.8, 0.35, 12, TM, al=PP_ALIGN.CENTER)
     bx(sl, 0.5, 3.0, 12.33, 1.12, fill=PNL2)
     tx(sl, ("La Amazonía colombiana concentra el 16 % de la diversidad mundial de aves. "
             "Monitorear su salud requiere identificación masiva de cantos, hoy dependiente de "
@@ -569,7 +569,7 @@ def s02(prs):
             "un clasificador bioacústico desde cero, especializado en fauna colombiana."),
        0.65, 3.07, 12.0, 0.98, 10.5, TS)
     bx(sl, 0.5, 4.25, 12.33, 1.4, fill=PNL, border=CYN)
-    tx(sl, "Pregunta de investigación", 0.65, 4.3, 5.0, 0.32, 9, CYN, bold=True)
+    tx(sl, "Pregunta de investigación", 0.65, 4.3, 5.0, 0.32, 12, CYN, bold=True)
     tx(sl, ("¿Podemos aprender patrones espectro-temporales de vocalizaciones amazónicas "
             "con datos pequeños y desbalanceados, alcanzando rendimiento competitivo "
             "sin recurrir a modelos preentrenados?"),
@@ -586,26 +586,26 @@ def s03(prs):
     bx(sl, 0.5, 1.08, 6.0, 5.7, fill=PNL)
     tx(sl, "Objetivos", 0.65, 1.15, 5.7, 0.35, 11, CYN, bold=True)
     tx_lines(sl, [
-        {"text": "General:", "sz": 10, "col": TP, "bold": True},
+        {"text": "General:", "sz": 13, "col": TP, "bold": True},
         {"text": ("Diseñar, entrenar y evaluar un clasificador bioacústico end-to-end "
                   "basado en CNN + attention para 10 especies amazónicas + no_ave."),
-         "sz": 9.5, "col": TS},
+         "sz": 12, "col": TS},
         {"text": " ", "sz": 4},
-        {"text": "Específicos:", "sz": 10, "col": TP, "bold": True},
+        {"text": "Específicos:", "sz": 13, "col": TP, "bold": True},
         {"text": "1.  Construir pipeline reproducible (Xeno-canto + ESC-50).",
-         "sz": 9.5, "col": TS},
+         "sz": 12, "col": TS},
         {"text": "2.  Comparar arquitecturas: CNN baseline → +MHSA → +balanceo.",
-         "sz": 9.5, "col": TS},
+         "sz": 12, "col": TS},
         {"text": "3.  Validar bajo cambio de distribución (audios externos).",
-         "sz": 9.5, "col": TS},
+         "sz": 12, "col": TS},
         {"text": "4.  Documentar decisiones metodológicas con rigor científico.",
-         "sz": 9.5, "col": TS},
+         "sz": 12, "col": TS},
         {"text": " ", "sz": 4},
-        {"text": "Por qué sin preentrenamiento:", "sz": 10, "col": GLD, "bold": True},
+        {"text": "Por qué sin preentrenamiento:", "sz": 13, "col": GLD, "bold": True},
         {"text": ("Modelos como YAMNet / AST se preentrenaron en AudioSet (etiquetas genéricas). "
                   "Aprender desde cero sobre fauna colombiana nos fuerza a construir "
                   "representaciones específicas — y a entender qué aprende el modelo realmente."),
-         "sz": 9.5, "col": TS},
+         "sz": 12, "col": TS},
     ], 0.65, 1.52, 5.6, 5.1)
     # Columna derecha — tabla comparativa
     bx(sl, 6.65, 1.08, 6.18, 5.7, fill=PNL)
@@ -621,8 +621,8 @@ def s03(prs):
     ]
     make_table(sl, tbl_data, 6.78, 1.55, 5.9, 4.95,
                col_ws=[0.3, 0.35, 0.35],
-               hdr_bg=BG2, hdr_fg=CYN, hdr_sz=8.5,
-               row_bg=PNL, row_bg2=BG2, row_fg=TS, row_sz=8,
+               hdr_bg=BG2, hdr_fg=CYN, hdr_sz=12,
+               row_bg=PNL, row_bg2=BG2, row_fg=TS, row_sz=10.5,
                win_col=2)
     return sl
 
@@ -644,12 +644,12 @@ def s04(prs):
         x0 = 0.5 + i * 2.56
         bx(sl, x0, 1.1, 2.3, 2.1, fill=PNL, border=col, bw=0.75)
         tx(sl, title, x0+0.1, 1.18, 2.1, 0.35, 11, col, bold=True)
-        tx(sl, desc,  x0+0.1, 1.56, 2.1, 1.45, 8.5, TS)
+        tx(sl, desc,  x0+0.1, 1.56, 2.1, 1.45, 11,  TS)
         if i < 4:
             tx(sl, "→", x0+2.3, 1.9, 0.26, 0.35, 16, TM, al=PP_ALIGN.CENTER)
     # Principios de diseño
     bx(sl, 0.5, 3.35, 12.33, 1.15, fill=PNL2)
-    tx(sl, "Decisiones de diseño:", 0.65, 3.42, 4.0, 0.3, 10, CYN, bold=True)
+    tx(sl, "Decisiones de diseño:", 0.65, 3.42, 4.0, 0.3, 12, CYN, bold=True)
     tx_lines(sl, [
         "·  Config centralizada (src/config.py) — único lugar para todos los hiperparámetros.",
         "·  Semilla 42 fija en todos los runs — splits idénticos para comparación justa.",
@@ -658,7 +658,7 @@ def s04(prs):
     ], 0.65, 3.74, 12.0, 1.6, 9.5, TS)
     # Módulos clave
     bx(sl, 0.5, 4.65, 12.33, 1.35, fill=PNL, border=TM, bw=0.4)
-    tx(sl, "Módulos clave — src/", 0.65, 4.7, 4.0, 0.3, 10, GLD, bold=True)
+    tx(sl, "Módulos clave — src/", 0.65, 4.7, 4.0, 0.3, 12, GLD, bold=True)
     tx(sl, ("model.py (SelvaSonicCNN / CNNAttention)  ·  loss.py (CrossEntropy + class_weights + label_smoothing)  ·  "
             "class_weights.py (cómputo de pesos inversos)  ·  transforms.py (Mel-espectrogramas)  ·  "
             "inference.py (pipeline de inferencia con umbral de confianza)  ·  logger.py (TensorBoard)"),
@@ -680,8 +680,8 @@ def s05(prs):
     data = [headers] + rows
     make_table(sl, data, 0.5, 1.08, 12.33, 5.45,
                col_ws=[0.045, 0.27, 0.16, 0.12, 0.12, 0.085],
-               hdr_bg=BG2, hdr_fg=CYN, hdr_sz=9,
-               row_bg=BG, row_bg2=PNL2, row_fg=TS, row_sz=8.5)
+               hdr_bg=BG2, hdr_fg=CYN, hdr_sz=12,
+               row_bg=BG, row_bg2=PNL2, row_fg=TS, row_sz=10.5)
     tx(sl, ("Criterios de selección: ≥14 grabaciones · diversidad taxonómica (8 familias) · "
             "reto intra-género (Crypturellus) · exclusión de 'Mystery mystery' · "
             "no_ave de ESC-50 excluyendo categoría Animals."),
@@ -698,26 +698,26 @@ def s06(prs):
     # Callout derecho
     bx(sl, 9.45, 1.08, 3.38, 5.6, fill=PNL, border=CYN, bw=0.6)
     tx_lines(sl, [
-        {"text": "Estadísticas clave", "sz": 10, "col": CYN, "bold": True},
+        {"text": "Estadísticas clave", "sz": 13, "col": CYN, "bold": True},
         {"text": " ", "sz": 3},
-        {"text": "Total train:", "sz": 9, "col": GLD, "bold": True},
-        {"text": "14,372 clips", "sz": 11, "col": TP, "bold": True},
+        {"text": "Total train:", "sz": 12, "col": GLD, "bold": True},
+        {"text": "14,372 clips", "sz": 14, "col": TP, "bold": True},
         {"text": " ", "sz": 3},
-        {"text": "Clase más frecuente:", "sz": 9, "col": TS},
-        {"text": "Trogon viridis · 2,784", "sz": 10, "col": TP, "bold": True},
+        {"text": "Clase más frecuente:", "sz": 12, "col": TS},
+        {"text": "Trogon viridis · 2,784", "sz": 13, "col": TP, "bold": True},
         {"text": " ", "sz": 3},
-        {"text": "Clase más rara:", "sz": 9, "col": TS},
-        {"text": "Chordeiles · 240", "sz": 10, "col": RED, "bold": True},
+        {"text": "Clase más rara:", "sz": 12, "col": TS},
+        {"text": "Chordeiles · 240", "sz": 13, "col": RED, "bold": True},
         {"text": " ", "sz": 3},
-        {"text": "Ratio max/min:", "sz": 9, "col": TS},
-        {"text": "11.6×  (Trogon / Chordeiles)", "sz": 10, "col": ORG, "bold": True},
+        {"text": "Ratio max/min:", "sz": 12, "col": TS},
+        {"text": "11.6×  (Trogon / Chordeiles)", "sz": 13, "col": ORG, "bold": True},
         {"text": " ", "sz": 3},
-        {"text": "Peso máximo:", "sz": 9, "col": TS},
-        {"text": "5.44 (Chordeiles)", "sz": 10, "col": CYN, "bold": True},
+        {"text": "Peso máximo:", "sz": 12, "col": TS},
+        {"text": "5.44 (Chordeiles)", "sz": 13, "col": CYN, "bold": True},
         {"text": " ", "sz": 3},
-        {"text": "Decisión:", "sz": 9, "col": GLD, "bold": True},
+        {"text": "Decisión:", "sz": 12, "col": GLD, "bold": True},
         {"text": "atacar con class weights en la loss antes de tunear arquitectura.",
-         "sz": 9, "col": TS},
+         "sz": 12, "col": TS},
     ], 9.6, 1.18, 3.1, 5.4)
     return sl
 
@@ -738,7 +738,7 @@ def s07(prs):
         x0 = 0.45 + i * 2.57
         bx(sl, x0, 1.1, 2.3, 2.25, fill=PNL, border=CYN, bw=0.75, rnd=True)
         tx(sl, title, x0+0.1, 1.2,  2.1, 0.35, 11, CYN, bold=True, al=PP_ALIGN.CENTER)
-        tx(sl, desc,  x0+0.1, 1.58, 2.1, 1.55, 8.5, TS, al=PP_ALIGN.CENTER)
+        tx(sl, desc,  x0+0.1, 1.58, 2.1, 1.55, 11,  TS, al=PP_ALIGN.CENTER)
         if i < 4:
             tx(sl, "→", x0+2.3, 2.0, 0.27, 0.4, 16, TM, al=PP_ALIGN.CENTER)
     # Tabla de hiperparámetros
@@ -756,8 +756,8 @@ def s07(prs):
     ]
     make_table(sl, tbl, 0.5, 3.93, 12.33, 3.0,
                col_ws=[0.18, 0.14, 0.68],
-               hdr_bg=PNL, hdr_fg=CYN, hdr_sz=8.5,
-               row_bg=BG, row_bg2=PNL2, row_fg=TS, row_sz=8.5,
+               hdr_bg=PNL, hdr_fg=CYN, hdr_sz=12,
+               row_bg=BG, row_bg2=PNL2, row_fg=TS, row_sz=10.5,
                win_col=None)
     return sl
 
@@ -774,12 +774,12 @@ def s08(prs):
            1.0, 2.8, 10.0, 0.5, 11, ORG, al=PP_ALIGN.CENTER)
     bx(sl, 0.5, 5.8, 12.33, 1.05, fill=PNL2)
     tx_lines(sl, [
-        {"text": "Lectura del espectrograma:", "sz": 10, "col": CYN, "bold": True},
+        {"text": "Lectura del espectrograma:", "sz": 13, "col": CYN, "bold": True},
         {"text": ("Eje X = tiempo (s)  ·  Eje Y = frecuencia (escala Mel)  ·  "
                   "Color (magma) = energía en dB relativo al pico (rojo = alta energía).  "
                   "Las CNN aprenden filtros que detectan patrones espectrales como el silbo "
                   "descendente de Crypturellus o el graznido pulsado de Ramphastos."),
-         "sz": 9.5, "col": TS},
+         "sz": 12, "col": TS},
     ], 0.65, 5.85, 12.0, 0.95)
     return sl
 
@@ -805,16 +805,16 @@ def s09(prs):
         bx(sl, x0, 1.1, 4.0, 3.55, fill=PNL, border=col, bw=0.75, rnd=True)
         tx(sl, title, x0+0.15, 1.18, 3.7, 0.35, 12, col, bold=True)
         tx(sl, param, x0+0.15, 1.55, 3.7, 0.3,  10, TP)
-        tx(sl, prob,  x0+0.15, 1.85, 3.7, 0.28,  9, TM)
-        tx(sl, desc,  x0+0.15, 2.2,  3.7, 2.2,   9, TS)
+        tx(sl, prob,  x0+0.15, 1.85, 3.7, 0.28, 12, TM)
+        tx(sl, desc,  x0+0.15, 2.2,  3.7, 2.2,  12, TS)
     bx(sl, 0.5, 4.82, 12.33, 1.1, fill=PNL2)
     tx_lines(sl, [
-        {"text": "Principios del control experimental:", "sz": 10, "col": GLD, "bold": True},
+        {"text": "Principios del control experimental:", "sz": 13, "col": GLD, "bold": True},
         {"text": ("·  Augmentation SOLO en train splits — val y test usan audio crudo sin modificar.  "
                   "·  La augmentation es temporal: cada epoch el mini-batch puede ver versiones distintas del mismo audio.  "
                   "·  Short Audio Strategy = 'wrap' (loop circular) en lugar de zero-padding "
                   "— evita que el modelo aprenda 'borde de silencio' como feature artefacto."),
-         "sz": 9.5, "col": TS},
+         "sz": 12, "col": TS},
     ], 0.65, 4.9, 12.0, 0.95)
     return sl
 
@@ -839,13 +839,13 @@ def s10(prs):
     # Decisiones de diseño
     bx(sl, 0.5, 5.48, 12.33, 1.72, fill=PNL)
     tx_lines(sl, [
-        {"text": "Decisiones de diseño:", "sz": 11, "col": CYN, "bold": True},
+        {"text": "Decisiones de diseño:", "sz": 14, "col": CYN, "bold": True},
         {"text": ("·  Progresión 32→64→128→256 (estándar VGGNet): cada bloque extrae representaciones más abstractas."),
-         "sz": 10.5, "col": TS},
+         "sz": 13.5, "col": TS},
         {"text": ("·  Global Average Pooling en lugar de Flatten: elimina dependencia de la dimensión temporal de entrada."),
-         "sz": 10.5, "col": TS},
+         "sz": 13.5, "col": TS},
         {"text": ("·  Dropout 0.3 conservador: con datasets pequeños, valores mayores degradan el flujo de gradientes."),
-         "sz": 10.5, "col": TS},
+         "sz": 13.5, "col": TS},
     ], 0.68, 5.56, 12.0, 1.58)
     return sl
 
@@ -870,14 +870,14 @@ def s11(prs):
     # Por qué MHSA mejora
     bx(sl, 0.5, 5.48, 12.33, 1.72, fill=PNL)
     tx_lines(sl, [
-        {"text": "Por qué MHSA mejora sobre el Baseline:", "sz": 11, "col": CYN, "bold": True},
+        {"text": "Por qué MHSA mejora sobre el Baseline:", "sz": 14, "col": CYN, "bold": True},
         {"text": ("·  Cada frame temporal 'consulta' todos los demás frames y pondera cuáles son más relevantes: "
                   "captura la estructura temporal de trinos y series de notas."),
-         "sz": 10.5, "col": TS},
+         "sz": 13.5, "col": TS},
         {"text": ("·  Converge en 17 épocas vs 27 del baseline: la atención encuentra patrones discriminativos más eficientemente."),
-         "sz": 10.5, "col": TS},
+         "sz": 13.5, "col": TS},
         {"text": ("·  v2 añade class_weights a la loss — mismo número de parámetros, solo cambia la función de costo."),
-         "sz": 10.5, "col": GLD},
+         "sz": 13.5, "col": GLD},
     ], 0.68, 5.56, 12.0, 1.58)
     return sl
 
@@ -894,22 +894,22 @@ def s12(prs):
     tx(sl, "w_c  =  N_total  /  (K  ×  N_c)",
        0.75, 1.6, 6.5, 0.55, 18, TP, bold=True, al=PP_ALIGN.CENTER)
     tx_lines(sl, [
-        {"text": "Donde:", "sz": 9, "col": TM, "bold": True},
-        {"text": "N_total = 14,372  (total clips de entrenamiento)", "sz": 9.5, "col": TS},
-        {"text": "K = 11  (número de clases)", "sz": 9.5, "col": TS},
-        {"text": "N_c = clips de la clase c en train", "sz": 9.5, "col": TS},
+        {"text": "Donde:", "sz": 12, "col": TM, "bold": True},
+        {"text": "N_total = 14,372  (total clips de entrenamiento)", "sz": 12, "col": TS},
+        {"text": "K = 11  (número de clases)", "sz": 12, "col": TS},
+        {"text": "N_c = clips de la clase c en train", "sz": 12, "col": TS},
         {"text": " ", "sz": 3},
         {"text": "Aplicado como: CrossEntropyLoss(weight=w, label_smoothing=0.1)",
-         "sz": 9.5, "col": GLD},
+         "sz": 12, "col": GLD},
         {"text": " ", "sz": 3},
         {"text": "Efecto: un error en Chordeiles (peso 5.44) penaliza 11.6× más",
-         "sz": 9.5, "col": TS},
+         "sz": 12, "col": TS},
         {"text": "que un error en Trogon viridis (peso 0.47).",
-         "sz": 9.5, "col": TS},
+         "sz": 12, "col": TS},
     ], 0.65, 2.33, 6.7, 2.5)
     # Tabla de pesos reales
     bx(sl, 7.65, 1.08, 5.18, 2.85, fill=PNL)
-    tx(sl, "Pesos reales (data/class_weights.pt)", 7.8, 1.15, 4.9, 0.32, 9.5, CYN, bold=True)
+    tx(sl, "Pesos reales (data/class_weights.pt)", 7.8, 1.15, 4.9, 0.32, 12,  CYN, bold=True)
     w_data = [
         ["Clase",              "N_train", "Peso"],
         ["Trogon viridis",     "2,784",   "0.4693 ⬇ mín"],
@@ -920,16 +920,16 @@ def s12(prs):
     ]
     make_table(sl, w_data, 7.73, 1.5, 4.95, 2.35,
                col_ws=[0.45, 0.3, 0.25],
-               hdr_bg=BG2, hdr_fg=CYN, hdr_sz=8,
-               row_bg=PNL, row_bg2=BG2, row_fg=TS, row_sz=8.5,
+               hdr_bg=BG2, hdr_fg=CYN, hdr_sz=12,
+               row_bg=PNL, row_bg2=BG2, row_fg=TS, row_sz=10.5,
                win_col=2)
     # Nota sobre label smoothing
     bx(sl, 0.5, 4.1, 12.33, 0.9, fill=PNL2)
-    tx(sl, "Nota sobre label smoothing (presente en los 3 modelos):", 0.65, 4.16, 7.0, 0.3, 9, GLD, bold=True)
+    tx(sl, "Nota sobre label smoothing (presente en los 3 modelos):", 0.65, 4.16, 7.0, 0.3, 12, GLD, bold=True)
     tx(sl, ("Los 3 modelos usan label_smoothing=0.1. La decisión fue aplicarlo desde baseline "
             "para tener una comparación justa. La hipótesis original era reservarlo para v2, "
             "pero mantenerlo en todos aísla el efecto de class weights con mayor rigor."),
-       0.65, 4.47, 12.0, 0.48, 9.5, TS)
+       0.65, 4.47, 12.0, 0.48, 12, TS)
     # Decisión metodológica
     bx(sl, 0.5, 5.15, 12.33, 1.5, fill=PNL, border=CYN, bw=0.75)
     tx(sl, "Decisión metodológica clave", 0.65, 5.22, 5.0, 0.32, 10, CYN, bold=True)
@@ -961,8 +961,8 @@ def s13(prs):
     ]
     make_table(sl, hp_data, 0.5, 1.08, 12.33, 4.65,
                col_ws=[0.22, 0.2, 0.58],
-               hdr_bg=BG2, hdr_fg=CYN, hdr_sz=8.5,
-               row_bg=BG, row_bg2=PNL2, row_fg=TS, row_sz=8.5)
+               hdr_bg=BG2, hdr_fg=CYN, hdr_sz=12,
+               row_bg=BG, row_bg2=PNL2, row_fg=TS, row_sz=10.5)
     # Training times
     bx(sl, 0.5, 5.9, 12.33, 0.95, fill=PNL)
     tx(sl, "Tiempos de entrenamiento reales (GPU T4 · medidos en history.json):",
@@ -970,7 +970,7 @@ def s13(prs):
     times = [("Baseline", "~286 min (27 ep.)"), ("Attention v1", "~181 min (17 ep.)"), ("Attention v2", "~270 min (25 ep.)")]
     for i, (name, t_str) in enumerate(times):
         x0 = 0.65 + i * 4.1
-        tx(sl, name,  x0, 6.3,  3.9, 0.28, 9, TM)
+        tx(sl, name,  x0, 6.3,  3.9, 0.28, 12, TM)
         tx(sl, t_str, x0, 6.57, 3.9, 0.28, 11, TP, bold=True)
     return sl
 
@@ -995,8 +995,8 @@ def s14(prs):
     ]
     make_table(sl, tbl, 0.5, 1.08, 12.33, 5.0,
                col_ws=[0.26, 0.22, 0.22, 0.30],
-               hdr_bg=BG2, hdr_fg=CYN, hdr_sz=9,
-               row_bg=BG, row_bg2=PNL2, row_fg=TS, row_sz=9,
+               hdr_bg=BG2, hdr_fg=CYN, hdr_sz=12,
+               row_bg=BG, row_bg2=PNL2, row_fg=TS, row_sz=11,
                win_col=3)
     bx(sl, 0.5, 6.25, 12.33, 0.85, fill=PNL, border=CYN, bw=0.5)
     tx(sl, ("Lectura clave: v2 no solo mejora test_acc (+7.1 pp vs baseline). "
@@ -1016,22 +1016,22 @@ def s15(prs):
     add_framed_image(sl, "curvas_v2", 0.5, 1.08, 8.7, 2.6)
     bx(sl, 9.35, 1.08, 3.48, 5.6, fill=PNL)
     tx_lines(sl, [
-        {"text": "Lecturas clave", "sz": 10, "col": CYN, "bold": True},
+        {"text": "Lecturas clave", "sz": 13, "col": CYN, "bold": True},
         {"text": " ", "sz": 4},
         {"text": "1.  Loss train/val descienden en paralelo → no overfitting severo.",
-         "sz": 9.5, "col": TS},
+         "sz": 12, "col": TS},
         {"text": " ", "sz": 3},
         {"text": "2.  val_acc mejor en epoch 15 → early stopping se activa en ep. 25 "
                  "(patience=5, no mejoró 0.001).",
-         "sz": 9.5, "col": TS},
+         "sz": 12, "col": TS},
         {"text": " ", "sz": 3},
         {"text": "3.  La curva de pérdida es más ruidosa que v1: class weights amplifican "
                  "el gradiente de clases raras → más varianza por batch.",
-         "sz": 9.5, "col": TS},
+         "sz": 12, "col": TS},
         {"text": " ", "sz": 3},
         {"text": "4.  Gap train/val en loss (v2 usa class weights en train pero no en val) "
                  "→ val_loss parece mayor, pero test_acc es el más alto.",
-         "sz": 9.5, "col": GLD},
+         "sz": 12, "col": GLD},
     ], 9.5, 1.2, 3.2, 5.4)
     return sl
 
@@ -1047,10 +1047,10 @@ def s16(prs):
     tx_lines(sl, [
         {"text": "·  Diagonal más fuerte en v2 — especialmente Crypturellus undulatus (F1: 0.264 → 0.526) "
                  "y Rupornis magnirostris (F1: 0.053 → 0.250).",
-         "sz": 9.5, "col": TS},
+         "sz": 12, "col": TS},
         {"text": "·  Confusiones residuales son taxonómicamente razonables: "
                  "Crypturellus cinereus ↔ C. undulatus (mismo género, canto similar).",
-         "sz": 9.5, "col": TS},
+         "sz": 12, "col": TS},
     ], 0.65, 5.28, 12.0, 0.78)
     return sl
 
@@ -1071,30 +1071,30 @@ def s17(prs):
         bx(sl, x0, 1.1, 4.0, 1.65, fill=PNL, border=col, bw=0.75)
         tx(sl, name,  x0+0.1, 1.17, 3.8, 0.32, 10, col, bold=True, al=PP_ALIGN.CENTER)
         tx(sl, f"ECE = {val}", x0+0.1, 1.48, 3.8, 0.5, 26, col, bold=True, al=PP_ALIGN.CENTER)
-        tx(sl, note,  x0+0.1, 2.0,  3.8, 0.3,   9, TM, al=PP_ALIGN.CENTER)
+        tx(sl, note,  x0+0.1, 2.0,  3.8, 0.3,  12, TM, al=PP_ALIGN.CENTER)
     # calibracion: 2687x763 px (ratio 0.284 — panorámica)
     add_framed_image(sl, "calibracion", 0.5, 2.9, 7.5, 2.3)
     # Interpretación
     bx(sl, 8.15, 2.9, 4.68, 3.8, fill=PNL2)
     tx_lines(sl, [
-        {"text": "¿Qué es ECE?", "sz": 10, "col": CYN, "bold": True},
+        {"text": "¿Qué es ECE?", "sz": 13, "col": CYN, "bold": True},
         {"text": ("Expected Calibration Error mide si la confianza del modelo "
                   "coincide con su accuracy real. ECE=0 es perfecto."),
-         "sz": 9, "col": TS},
+         "sz": 12, "col": TS},
         {"text": " ", "sz": 4},
-        {"text": "¿Por qué v2 tiene ECE mayor?", "sz": 10, "col": ORG, "bold": True},
+        {"text": "¿Por qué v2 tiene ECE mayor?", "sz": 13, "col": ORG, "bold": True},
         {"text": ("Los class weights fuerzan al modelo a ser más confiado en clases "
                   "minoritarias para compensar su escasez. Esto mejora F1 macro "
                   "(cada clase pesa igual), pero deteriora ECE global "
                   "(dominado por clases mayoritarias)."),
-         "sz": 9, "col": TS},
+         "sz": 12, "col": TS},
         {"text": " ", "sz": 4},
-        {"text": "Decisión metodológica:", "sz": 10, "col": GLD, "bold": True},
+        {"text": "Decisión metodológica:", "sz": 13, "col": GLD, "bold": True},
         {"text": ("Priorizar F1 macro porque en monitoreo bioacústico interesa más "
                   "detectar especies raras que tener confianza calibrada en las dominantes."),
-         "sz": 9, "col": TS},
+         "sz": 12, "col": TS},
         {"text": " ", "sz": 4},
-        {"text": "Mitigación futura: temperature scaling post-hoc sobre v2.", "sz": 9, "col": TM},
+        {"text": "Mitigación futura: temperature scaling post-hoc sobre v2.", "sz": 12, "col": TM},
     ], 8.3, 3.0, 4.4, 3.65)
     return sl
 
@@ -1113,15 +1113,15 @@ def s18(prs):
     for i, (name, val, col, note) in enumerate(sil_cards):
         x0 = 0.5 + i * 4.2
         bx(sl, x0, 1.1, 4.0, 1.55, fill=PNL, border=col, bw=0.6)
-        tx(sl, name,  x0+0.1, 1.17, 3.8, 0.3, 9, col, bold=True, al=PP_ALIGN.CENTER)
+        tx(sl, name,  x0+0.1, 1.17, 3.8, 0.3,  12, col, bold=True, al=PP_ALIGN.CENTER)
         tx(sl, f"Silhouette = {val}", x0+0.1, 1.47, 3.8, 0.45, 22, col, bold=True, al=PP_ALIGN.CENTER)
-        tx(sl, note,  x0+0.1, 1.94, 3.8, 0.28, 8.5, TM, al=PP_ALIGN.CENTER)
+        tx(sl, note,  x0+0.1, 1.94, 3.8, 0.28, 11, TM, al=PP_ALIGN.CENTER)
     # embeddings: 3392x2130 px (ratio 0.628 — letterbox)
     add_framed_image(sl, "embeddings", 0.5, 2.8, 12.33, 3.65)
     tx(sl, ("Nota: el silhouette score se calcula sobre el espacio original de 256 dimensiones (no sobre t-SNE). "
             "La visualización usa t-SNE (perplexity=30). Trustworthiness t-SNE ≈ 0.996 en los 3 modelos → "
             "la proyección 2D preserva bien la estructura del espacio real."),
-       0.5, 6.58, 12.33, 0.42, 8, TM)
+       0.5, 6.58, 12.33, 0.42, 10, TM)
     return sl
 
 
@@ -1136,11 +1136,11 @@ def s19(prs):
     bx(sl, 0.5, 5.85, 12.33, 1.1, fill=PNL2)
     tx_lines(sl, [
         {"text": "Grad-CAM proyecta los gradientes del último mapa de activación sobre el espectrograma de entrada. "
-                 "Las regiones cálidas son las que más contribuyeron a la predicción correcta.", "sz": 9.5, "col": TS},
+                 "Las regiones cálidas son las que más contribuyeron a la predicción correcta.", "sz": 12, "col": TS},
         {"text": ("Hallazgo cuantitativo: entropía media de los mapas CAM bajó de 0.952 (baseline) → 0.841 (v2). "
                   "Entropía más baja = atención más focalizada. "
                   "Centroide de frecuencia subió de 65.9 → 76.7 bins Mel: v2 mira más arriba en el espectro."),
-         "sz": 9.5, "col": TS, "sp": 3},
+         "sz": 12, "col": TS, "sp": 3},
     ], 0.65, 5.92, 12.0, 0.98)
     return sl
 
@@ -1154,20 +1154,20 @@ def s20(prs):
     add_framed_image(sl, "ext_dist", 0.5, 1.08, 8.5, 5.6)
     bx(sl, 9.1, 1.08, 3.73, 5.6, fill=PNL)
     tx_lines(sl, [
-        {"text": "Métricas de campo", "sz": 10, "col": CYN, "bold": True},
+        {"text": "Métricas de campo", "sz": 13, "col": CYN, "bold": True},
         {"text": " ", "sz": 3},
-        {"text": "Confianza media", "sz": 9, "col": TM},
-        {"text": "Baseline:  0.40", "sz": 10, "col": TS},
-        {"text": "Att. v1:   0.59  (más alta)", "sz": 10, "col": ORG},
-        {"text": "Att. v2:   0.42  (más baja ⭐)", "sz": 10, "col": CYN},
+        {"text": "Confianza media", "sz": 12, "col": TM},
+        {"text": "Baseline:  0.40", "sz": 13, "col": TS},
+        {"text": "Att. v1:   0.59  (más alta)", "sz": 13, "col": ORG},
+        {"text": "Att. v2:   0.42  (más baja ⭐)", "sz": 13, "col": CYN},
         {"text": " ", "sz": 3},
-        {"text": "% no_identificado (θ=0.6)", "sz": 9, "col": TM},
-        {"text": "Baseline:  90.2 %", "sz": 10, "col": TS},
-        {"text": "Att. v1:   42.0 %", "sz": 10, "col": ORG},
-        {"text": "Att. v2:   ver hist.", "sz": 10, "col": CYN},
+        {"text": "% no_identificado (θ=0.6)", "sz": 12, "col": TM},
+        {"text": "Baseline:  90.2 %", "sz": 13, "col": TS},
+        {"text": "Att. v1:   42.0 %", "sz": 13, "col": ORG},
+        {"text": "Att. v2:   ver hist.", "sz": 13, "col": CYN},
         {"text": " ", "sz": 3},
-        {"text": "Acuerdo B↔v1 (clip a clip)", "sz": 9, "col": TM},
-        {"text": "37.9 %  (37.5 % no_ident.)", "sz": 10, "col": TS},
+        {"text": "Acuerdo B↔v1 (clip a clip)", "sz": 12, "col": TM},
+        {"text": "37.9 %  (37.5 % no_ident.)", "sz": 13, "col": TS},
     ], 9.25, 1.2, 3.45, 5.4)
     bx(sl, 0.5, 6.82, 8.5, 0.42, fill=PNL2)
     tx(sl, ("Lectura responsable: sin etiquetas de expertos, no se puede calcular accuracy en campo. "
@@ -1212,8 +1212,8 @@ def s21(prs):
             x0 = 0.5 + (i-3)*6.25 + 0.25; y0 = 3.7
         w = 4.0 if i < 3 else 5.8
         bx(sl, x0, y0, w, 2.35, fill=PNL, border=col, bw=0.5)
-        tx(sl, title, x0+0.12, y0+0.1, w-0.25, 0.32, 9.5, col, bold=True)
-        tx(sl, desc,  x0+0.12, y0+0.46, w-0.25, 1.8,  8.5, TS)
+        tx(sl, title, x0+0.12, y0+0.1, w-0.25, 0.32, 12, col, bold=True)
+        tx(sl, desc,  x0+0.12, y0+0.46, w-0.25, 1.8,  11, TS)
     return sl
 
 
@@ -1242,8 +1242,8 @@ def s22(prs):
     for i, (col, title, desc) in enumerate(items):
         y0 = 1.1 + i * 1.15
         bx(sl, 0.5, y0, 12.33, 1.05, fill=PNL, border=col, bw=0.5, rnd=True)
-        tx(sl, title, 0.65, y0+0.08, 3.5, 0.35, 10, col, bold=True)
-        tx(sl, desc,  4.3, y0+0.08, 8.3, 0.85, 9.5, TS)
+        tx(sl, title, 0.65, y0+0.08, 3.5, 0.35, 12, col, bold=True)
+        tx(sl, desc,  4.3, y0+0.08, 8.3, 0.85, 12, TS)
     return sl
 
 
@@ -1254,29 +1254,29 @@ def s23(prs):
     # Columna izquierda — conclusión
     bx(sl, 0.5, 1.08, 6.5, 5.85, fill=PNL)
     tx_lines(sl, [
-        {"text": "Mensaje principal", "sz": 11, "col": CYN, "bold": True},
+        {"text": "Mensaje principal", "sz": 14, "col": CYN, "bold": True},
         {"text": " ", "sz": 3},
         {"text": ("SelvaSonic-ML demuestra una ruta completa de Machine Learning aplicado: "
                   "descarga estructurada de datos → segmentación → representación Mel → "
                   "CNN baseline → +attention → +balanceo → evaluación multi-métrica → "
                   "prueba en campo."),
-         "sz": 10, "col": TP},
+         "sz": 13, "col": TP},
         {"text": " ", "sz": 5},
-        {"text": "Resultado cuantitativo", "sz": 11, "col": GLD, "bold": True},
+        {"text": "Resultado cuantitativo", "sz": 14, "col": GLD, "bold": True},
         {"text": " ", "sz": 3},
         {"text": ("El modelo final (Attention v2) alcanza 0.7036 de test accuracy "
                   "sobre 11 clases con desbalance severo (12:1), sin preentrenamiento."),
-         "sz": 10, "col": TP},
+         "sz": 13, "col": TP},
         {"text": " ", "sz": 5},
-        {"text": "Mensaje metodológico", "sz": 11, "col": CYN, "bold": True},
+        {"text": "Mensaje metodológico", "sz": 14, "col": CYN, "bold": True},
         {"text": " ", "sz": 3},
         {"text": ("La mejora de un modelo no se defiende solo con accuracy: se defiende "
                   "con controles de fuga, métricas balanceadas, análisis de calibración, "
                   "embeddings interpretables y pruebas bajo cambio de distribución."),
-         "sz": 10, "col": TS},
+         "sz": 13, "col": TS},
         {"text": " ", "sz": 5},
         {"text": ("Repositorio: github.com/LauraRuizA09/SelvaSonic-ML"),
-         "sz": 9, "col": TM},
+         "sz": 12, "col": TM},
     ], 0.65, 1.18, 6.2, 5.65)
     # Columna derecha — referencias
     bx(sl, 7.15, 1.08, 5.68, 5.85, fill=PNL2)
@@ -1294,8 +1294,8 @@ def s23(prs):
     y0_r = 1.55
     for auth, title in refs:
         y0_r_item = y0_r
-        tx(sl, auth,  7.3,  y0_r_item,       5.4, 0.22, 7.5, GLD, bold=True)
-        tx(sl, title, 7.3,  y0_r_item+0.2,   5.4, 0.22, 7.5, TS)
+        tx(sl, auth,  7.3,  y0_r_item,       5.4, 0.22, 10, GLD, bold=True)
+        tx(sl, title, 7.3,  y0_r_item+0.2,   5.4, 0.22, 10, TS)
         y0_r += 0.48
     # Footer especial
     tx(sl, ("Laura Ruiz Arango & Jose Aldair Molina Méndez · Prof. Alcides Montoya · "
